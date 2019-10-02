@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AvailableLibraryUpdateStorage">
+    <library-updates>
+      <library-update>
+        <group-id>androidx.test.espresso</group-id>
+        <name>espresso-core</name>
+        <version>3.3.0-alpha02</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.test</group-id>
+        <name>runner</name>
+        <version>1.3.0-alpha02</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>converter-gson</name>
+        <version>2.6.2</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.okhttp3</group-id>
+        <name>logging-interceptor</name>
+        <version>4.2.0</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.constraintlayout</group-id>
+        <name>constraintlayout</name>
+        <version>2.0.0-beta2</version>
+        <repository>Google</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>adapter-rxjava2</name>
+        <version>2.6.2</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>com.squareup.retrofit2</group-id>
+        <name>retrofit</name>
+        <version>2.6.2</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>junit</group-id>
+        <name>junit</name>
+        <version>4.13-beta-3</version>
+        <repository>JCenter</repository>
+      </library-update>
+      <library-update>
+        <group-id>androidx.appcompat</group-id>
+        <name>appcompat</name>
+        <version>1.1.0</version>
+        <repository>Google</repository>
+      </library-update>
+    </library-updates>
+    <last-search-timestamp>1569811002912</last-search-timestamp>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a5c37ef4-0d41-4fd1-b9ca-535d5c362d27" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="670912353">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gradle" value="3" />
+          <entry key="java" value="523" />
+          <entry key="txt" value="19" />
+          <entry key="xml" value="363" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Groovy" value="3" />
+          <entry key="JAVA" value="523" />
+          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="XML" value="363" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gradle" value="1" />
+          <entry key="java" value="28" />
+          <entry key="xml" value="19" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Groovy" value="1" />
+          <entry key="JAVA" value="28" />
+          <entry key="XML" value="19" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="58" selection-start-line="33" selection-start-column="58" selection-end-line="33" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseMvpActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>100dp</find>
+      <find>mLoadingView</find>
+      <find>onFragmentInteraction</find>
+      <find>onButtonPressed</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>60dp</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/WelcomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/util/StatusBarUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BasePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/javabean/DemoEntity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/ApiException.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/CustomException.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/Response.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/util/OSUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/NetWorkManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/Request.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/WelcomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/login_et_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/login_et_bg.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/LoginView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/LoginPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/bottom_nav_selector.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/animator/bottom_nav_selector.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/MainView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/MainPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/PopularView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/PopularPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/TrendingView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/TrendingPresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/FavoriteView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/FavoritePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/MineView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/MinePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/MineFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/FavoriteFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/PopularFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/TrendingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorite.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_mine.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_popular.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_trending.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseMvpActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/bottom_nav_selector.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/MainActivity.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="801" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="githubapp" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="D:/android-sdk-windows" />
+    <property name="device.picker.selection" value="P7C0218309002730" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="sync.plugin.last.upgrade.timestamp" value="1570011779607" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Signing Configs" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.packageName">
+      <recent name="com.sjq.githubapp.fragments" />
+      <recent name="com.sjq.githubapp.activities" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.sjq.githubapp.presenters" />
+      <recent name="com.sjq.githubapp.views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5c37ef4-0d41-4fd1-b9ca-535d5c362d27" name="Default Changelist" comment="" />
+      <created>1569804479109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569804479109</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="801" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="1" />
+      <window_info id="Build Variants" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.1874106" />
+      <window_info id="Image Layers" order="6" />
+      <window_info id="Resources Explorer" order="7" />
+      <window_info id="Structure" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="0" />
+      <window_info active="true" anchor="bottom" id="Build" order="1" visible="true" weight="0.16361073" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Android Profiler" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Logcat" order="6" weight="0.23272215" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32863188" />
+      <window_info anchor="bottom" id="Flutter Performance" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="9" />
+      <window_info anchor="right" id="Palette&#9;" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Flutter Inspector" order="2" />
+      <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
+      <window_info anchor="right" id="Flutter Outline" order="4" />
+      <window_info anchor="right" id="Gradle" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Preview" order="7" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/LoginActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/data/LoginRepository.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/data/LoginDataSource.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/ui/login/LoginActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main2.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/util/StatusBarUtils.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/util/OSUtils.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/WelcomeActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/CustomException.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/NetWorkManager.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/Response.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/Request.java" />
+    <entry file="jar://D:/android-sdk-windows/platforms/android-29/android.jar!/java/util/logging/Handler.class" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/network/ApiException.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/gradle/gradle-4.4/caches/modules-2/files-2.1/com.github.ForgetAll/LoadingDialog/v1.1.2/f6775f019e3cf67ce5ab15402d4dfb0d53367c02/LoadingDialog-v1.1.2-sources.jar!/com/xiasuhuei321/loadingdialog/view/LoadingDialog.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/LoginView.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/LoginPresenter.java" />
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/login_et_bg.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/MainView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/MainPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BasePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/PopularView.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/PopularPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="63" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/TrendingView.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/TrendingPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/MinePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/MineView.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/presenters/FavoritePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/views/FavoriteView.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/FavoriteFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/PopularFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="83" column="44" selection-start-line="83" selection-start-column="44" selection-end-line="83" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/TrendingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="82" column="44" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="61" column="50" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/fragments/MineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_trending.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_mine.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_favorite.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_nav_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_popular.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="58" selection-start-line="33" selection-start-column="58" selection-end-line="33" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/base/BaseMvpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjq/githubapp/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
