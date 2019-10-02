@@ -23,6 +23,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 
     private FrameLayout fragmeLayout;
     private BottomNavigationView bottomNavView;
+    //11
     private BaseFragment f1,f2,f3,f4;
 
 
