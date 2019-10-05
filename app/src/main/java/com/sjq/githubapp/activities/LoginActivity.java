@@ -1,6 +1,7 @@
 package com.sjq.githubapp.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,9 @@ import com.sjq.githubapp.presenters.LoginPresenter;
 import com.sjq.githubapp.views.LoginView;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import jp.wasabeef.blurry.Blurry;
+
 
 public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> implements LoginView, View.OnClickListener {
 
@@ -21,6 +25,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     private Button loginBtn;
 
     private LoadingDialog mLoadingView;
+    private ConstraintLayout wrap;
 
 
     @Override
@@ -50,6 +55,16 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
         loginBtn = (Button) findViewById(R.id.login_btn);
         loginBtn.setOnClickListener(this);
 
+
+        wrap = (ConstraintLayout) findViewById(R.id.wrap);
+//        Blurry.with(this).radius(25).sampling(2).onto(wrap);
+        Blurry.with(this)
+                .radius(10)
+                .sampling(8)
+                .color(Color.argb(66, 255, 255, 0))
+                .async()
+                .animate(500)
+                .onto(wrap);
 
     }
 
