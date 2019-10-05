@@ -1,7 +1,7 @@
 package com.sjq.githubapp.network;
 
 
-import com.sjq.githubapp.javabean.DemoEntity;
+import com.sjq.githubapp.javabean.Demo2Entity;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface Request {
     public static String HOST = "https://www.xxx.com/app_v5/";
 
     @POST("?service=sser.getList")
-    Observable<Response<List<DemoEntity>>> getList(@Query("id") String id);
+    Observable<Response<List<Demo2Entity>>> getList(@Query("id") String id);
 }
