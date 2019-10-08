@@ -1,6 +1,7 @@
 package com.sjq.githubapp.activities;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -13,8 +14,11 @@ import com.sjq.githubapp.fragments.FavoriteFragment;
 import com.sjq.githubapp.fragments.MineFragment;
 import com.sjq.githubapp.fragments.PopularFragment;
 import com.sjq.githubapp.fragments.TrendingFragment;
+import com.sjq.githubapp.javabean.LanguageEntity;
 import com.sjq.githubapp.presenters.MainPresenter;
 import com.sjq.githubapp.views.MainView;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 
@@ -108,7 +112,23 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
     }
 
     @Override
+    public void initData() {
+        mPresenter.initLangrage();
+
+    }
+
+    @Override
     public void onFragmentInteraction() {
+
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void refreshLanguage(ArrayList<LanguageEntity> arrayList) {
 
     }
 }
