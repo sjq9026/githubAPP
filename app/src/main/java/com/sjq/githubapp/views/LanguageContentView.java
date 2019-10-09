@@ -7,11 +7,7 @@ import com.sjq.githubapp.javabean.LanguageEntity;
 
 import java.util.ArrayList;
 
-public interface PopularView extends BaseView {
+public interface LanguageContentView extends BaseView {
 
-    Context getContext();
 
-   void refreshLanguage(ArrayList<LanguageEntity> languageEntities);
-
-   void onTabClick(int index);
 }

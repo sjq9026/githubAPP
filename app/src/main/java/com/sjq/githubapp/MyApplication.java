@@ -1,6 +1,7 @@
 package com.sjq.githubapp;
 
 import android.app.Application;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.util.Log;
@@ -28,12 +29,15 @@ public class MyApplication extends Application {
     private void initGreenDao() {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(new DatabaseContext(this, UtilsFile.getSDFilePath()), DB_NAME, null);
         DaoMaster daoMaster = new DaoMaster(helper.getWritableDatabase());
+
         mDaoSession = daoMaster.newSession();
     }
 
     public static DaoSession getmDaoSession() {
         return mDaoSession;
     }
+
+
 
    
 }

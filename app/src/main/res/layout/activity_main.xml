@@ -10,7 +10,7 @@
         android:id="@+id/fragme_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/design_default_color_primary_dark"
+
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">

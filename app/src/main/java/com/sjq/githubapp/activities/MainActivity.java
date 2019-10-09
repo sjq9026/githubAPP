@@ -1,8 +1,10 @@
 package com.sjq.githubapp.activities;
 
-import android.app.FragmentTransaction;
+
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -21,6 +23,9 @@ import com.sjq.githubapp.views.MainView;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> implements MainView, BottomNavigationView.OnNavigationItemSelectedListener, BaseFragment.OnFragmentInteractionListener {
 
@@ -36,6 +41,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
     }
 
     @Override
@@ -54,7 +60,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         hideAllFragment(transaction);
         switch (menuItem.getItemId()){
             case R.id.item_popular:
@@ -113,7 +119,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 
     @Override
     public void initData() {
-        mPresenter.initLangrage();
+
 
     }
 
@@ -129,6 +135,8 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
 
     @Override
     public void refreshLanguage(ArrayList<LanguageEntity> arrayList) {
+        Log.i("TAGTAG",arrayList.toString());
+
 
     }
 }

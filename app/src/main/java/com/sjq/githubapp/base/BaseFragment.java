@@ -1,13 +1,16 @@
 package com.sjq.githubapp.base;
 
-import android.app.Fragment;
+
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 
 public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V>>
@@ -15,7 +18,9 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     public T mPresenter;
 
     public BaseFragment() {
-
+        mPresenter = initPresenter();
+        mPresenter.onAttach((V) this);
+        Log.i("init","basefragment-----initPresenter");
     }
 
     @Override
@@ -25,8 +30,8 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mPresenter = initPresenter();
-        mPresenter.onAttach((V) this);
+        Log.i("init","basefragment-----initPresenter");
+
         TextView textView = new TextView(getActivity());
         textView.setText("brank fragment");
         return textView;
@@ -37,6 +42,7 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
     }
 
     @Override
@@ -59,6 +65,8 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     public void showShorToast(String msg) {
 
     }
+
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction();

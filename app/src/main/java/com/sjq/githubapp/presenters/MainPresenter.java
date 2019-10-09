@@ -27,40 +27,7 @@ import java.util.ArrayList;
 
 
 public class MainPresenter extends BasePresenter<MainView> {
-    public void initLangrage() {
-        ArrayList<LanguageEntity> mLanguages = new ArrayList<>();
-        mLanguages = (ArrayList<LanguageEntity>) MyApplication.getmDaoSession().getLanguageEntityDao().loadAll();
-        if (mLanguages == null || mLanguages.size() == 0) {
-            InputStreamReader inputStreamReader;
-            mLanguages = new ArrayList<>();
-            try {
-                inputStreamReader = new InputStreamReader(view.getContext().getAssets().open("LanguageJsonStr.json"), "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(
-                        inputStreamReader);
-                String line;
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-                inputStreamReader.close();
-                bufferedReader.close();
-                String resultString = stringBuilder.toString();
-                JsonParser parser = new JsonParser();
-                JsonArray jsonArray = parser.parse(resultString).getAsJsonArray();
-                Gson gson = new Gson();
-                for (JsonElement obj : jsonArray) {
-                    LanguageEntity language = gson.fromJson(obj, LanguageEntity.class);
-                    mLanguages.add(language);
-                    MyApplication.getmDaoSession().getLanguageEntityDao().insertOrReplace(language);
-                }
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        view.refreshLanguage(mLanguages);
-    }
+
 
 
 }
