@@ -1,59 +1,109 @@
 package com.sjq.githubapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseFragment;
+import com.sjq.githubapp.javabean.LanguageEntity;
+import com.sjq.githubapp.presenters.PopularPresenter;
 import com.sjq.githubapp.presenters.TrendingPresenter;
+import com.sjq.githubapp.views.PopularView;
 import com.sjq.githubapp.views.TrendingView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TrendingFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TrendingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TrendingFragment extends BaseFragment<TrendingView, TrendingPresenter> {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+
+import java.util.ArrayList;
+
+
+public class TrendingFragment extends BaseFragment<PopularView, PopularPresenter> implements PopularView{
+
     private static final String ARG_PARAM1 = "param1";
+
+    private View contentView;
+    private ViewPager viewPager;
+    private ArrayList<LanguageEntity> mLanguages;
+    private TextView title_tv;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
 
 
     private OnFragmentInteractionListener mListener;
+    private MagicIndicator magicIndicator;
 
     public TrendingFragment() {
-        // Required empty public constructor
+        super();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
 
-     * @return A new instance of fragment TrendingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static TrendingFragment newInstance(String param1) {
         TrendingFragment fragment = new TrendingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public Context getContext() {
+        if (mListener != null) {
+            return (Activity) mListener;
+        } else {
+            throw new RuntimeException("must implement OnFragmentInteractionListener");
+
+        }
+    }
+
+    @Override
+    public void refreshLanguage(ArrayList<LanguageEntity> languageEntities) {
+        this.mLanguages = languageEntities;
+        Log.i("init", languageEntities.toString());
+        if (magicIndicator == null) {
+            magicIndicator = contentView.findViewById(R.id.magic_indicator);
+        }
+        title_tv.setText(mLanguages.get(0).getName()+"优质项目推荐");
+        magicIndicator.setNavigator(mPresenter.initCommonNavigator(languageEntities));
+        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(languageEntities, getChildFragmentManager()));
+        ViewPagerHelper.bind(magicIndicator, viewPager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                title_tv.setText(mLanguages.get(position).getName()+"优质项目推荐");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onTabClick(int index) {
+        title_tv.setText(mLanguages.get(index).getName()+"优质项目推荐");
+
+        viewPager.setCurrentItem(index);
     }
 
     @Override
@@ -65,24 +115,31 @@ public class TrendingFragment extends BaseFragment<TrendingView, TrendingPresent
         }
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trending, container, false);
+        contentView = inflater.inflate(R.layout.fragment_trending, container, false);
+        initView();
+        mPresenter.initLangrage();
+        return contentView;
+    }
+
+    private void initView() {
+        title_tv = contentView.findViewById(R.id.title_tv);
+        magicIndicator = contentView.findViewById(R.id.magic_indicator);
+        viewPager = contentView.findViewById(R.id.view_pager);
     }
 
     @Override
-    protected TrendingPresenter initPresenter() {
-        return new TrendingPresenter();
+    protected PopularPresenter initPresenter() {
+        return new PopularPresenter();
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction();
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {

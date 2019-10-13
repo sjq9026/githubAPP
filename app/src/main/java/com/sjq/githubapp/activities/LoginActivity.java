@@ -32,7 +32,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        initView();
+initView();
     }
 
     @Override
@@ -41,7 +41,9 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     }
 
 
-    private void initView() {
+
+    public void initView() {
+
         mLoadingView = new LoadingDialog(this);
         mLoadingView.setLoadingText("加载中")
                 .setSuccessText("加载成功")//显示加载成功时的文字

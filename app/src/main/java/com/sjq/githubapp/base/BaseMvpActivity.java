@@ -25,11 +25,14 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mPresenter = initPresenter();
         mPresenter.onAttach((V) this);
-        initData();
+
         //StatusBarUtil.setTransparent(this);
-        StatusBarUtil.setColor(this, Color.parseColor("#ffffff"));
+        StatusBarUtil.setColorNoTranslucent(this, Color.parseColor("#03A9F4"));
+
+        initData();
     }
 
 

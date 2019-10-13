@@ -8,7 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 
-import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 
 
@@ -19,9 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 import com.sjq.githubapp.R;
+import com.sjq.githubapp.activities.PopularDetailActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.javabean.LanguageEntity;
 import com.sjq.githubapp.presenters.PopularPresenter;
@@ -41,11 +43,12 @@ import java.util.ArrayList;
  * Use the {@link PopularFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PopularFragment extends BaseFragment<PopularView, PopularPresenter> implements PopularView {
+public class PopularFragment extends BaseFragment<PopularView, PopularPresenter> implements PopularView , View.OnClickListener {
 
     private static final String ARG_PARAM1 = "param1";
     private View contentView;
     private ViewPager viewPager;
+    private ImageView search;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -110,9 +113,10 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
 
     private void initView() {
 
-        magicIndicator = (MagicIndicator) contentView.findViewById(R.id.magic_indicator);
+        magicIndicator = contentView.findViewById(R.id.magic_indicator);
         viewPager = contentView.findViewById(R.id.view_pager);
-
+        search = contentView.findViewById(R.id.search_img);
+        search.setOnClickListener(this);
 
     }
 
@@ -120,10 +124,10 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
     public void refreshLanguage(final ArrayList<LanguageEntity> languageEntities) {
         Log.i("init", languageEntities.toString());
         if (magicIndicator == null) {
-            magicIndicator = (MagicIndicator) contentView.findViewById(R.id.magic_indicator);
+            magicIndicator = contentView.findViewById(R.id.magic_indicator);
         }
         magicIndicator.setNavigator(mPresenter.initCommonNavigator(languageEntities));
-        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(languageEntities.size(), getChildFragmentManager()));
+        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(languageEntities, getChildFragmentManager()));
         ViewPagerHelper.bind(magicIndicator, viewPager);
     }
 
@@ -157,4 +161,12 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.search_img:
+
+                break;
+        }
+    }
 }

@@ -23,6 +23,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
@@ -80,10 +81,10 @@ public class PopularPresenter extends BasePresenter<PopularView> {
     }
 
 
-    public MyFragmentPagerAdapter getFragmentPagerAdapter(int size, FragmentManager manager) {
+    public MyFragmentPagerAdapter getFragmentPagerAdapter(ArrayList<LanguageEntity> languageEntities, FragmentManager manager) {
         ArrayList<Fragment> fragments = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            fragments.add(LanguageContentFragment.newInstance(i + ""));
+        for (int i = 0; i < languageEntities.size(); i++) {
+            fragments.add(LanguageContentFragment.newInstance(languageEntities.get(i).getName()));
         }
         MyFragmentPagerAdapter myFragmentPagerAdapter = new MyFragmentPagerAdapter(manager, fragments);
         return myFragmentPagerAdapter;
@@ -93,6 +94,7 @@ public class PopularPresenter extends BasePresenter<PopularView> {
     public CommonNavigator initCommonNavigator(final ArrayList<LanguageEntity> mTitleDataList) {
         CommonNavigator commonNavigator = new CommonNavigator(view.getContext());
         commonNavigator.setEnablePivotScroll(true);
+
         CommonNavigatorAdapter adapter = new CommonNavigatorAdapter() {
 
             @Override
@@ -102,8 +104,17 @@ public class PopularPresenter extends BasePresenter<PopularView> {
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView colorTransitionPagerTitleView = new SimplePagerTitleView(context);
-                colorTransitionPagerTitleView.setNormalColor(Color.GRAY);
-                colorTransitionPagerTitleView.setSelectedColor(R.color.colorPrimary);
+
+                colorTransitionPagerTitleView.setNormalColor(R.color.white);
+                colorTransitionPagerTitleView.setTextColor(view.getContext().getResources().getColor(R.color.white));
+                colorTransitionPagerTitleView.setSelectedColor(R.color.white);
+                colorTransitionPagerTitleView.setText(mTitleDataList.get(index).getName());
+//                ClipPagerTitleView clipPagerTitleView = new ClipPagerTitleView(context);
+//                clipPagerTitleView.setText(mTitleDataList.get(index).getName());
+//                clipPagerTitleView.setTextColor(Color.parseColor("#f2c4c4"));
+//                clipPagerTitleView.setClipColor(Color.WHITE);
+
+
                 colorTransitionPagerTitleView.setText(mTitleDataList.get(index).getName());
                 colorTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,6 +129,9 @@ public class PopularPresenter extends BasePresenter<PopularView> {
             public IPagerIndicator getIndicator(Context context) {
                 LinePagerIndicator indicator = new LinePagerIndicator(context);
                 indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
+                indicator.setColors(Color.WHITE);
+
+
                 return indicator;
             }
         };

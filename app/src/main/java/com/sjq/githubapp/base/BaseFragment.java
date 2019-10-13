@@ -18,14 +18,16 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     public T mPresenter;
 
     public BaseFragment() {
-        mPresenter = initPresenter();
-        mPresenter.onAttach((V) this);
-        Log.i("init","basefragment-----initPresenter");
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPresenter = initPresenter();
+        mPresenter.onAttach((V) this);
+        Log.i("AAAAAA","BaseFragment---onCreate()");
+
     }
 
     @Override

@@ -22,6 +22,5 @@ public class PopularModelImpl implements PopularModel {
             mLanguages = new ArrayList<>();
         }
         return mLanguages;
-
     }
 }

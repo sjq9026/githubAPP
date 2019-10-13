@@ -4,7 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.http.GET;
 
 import android.service.autofill.TextValueSanitizer;
 import android.util.Log;
@@ -14,9 +20,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sjq.githubapp.R;
+import com.sjq.githubapp.activities.PopularDetailActivity;
+import com.sjq.githubapp.adapters.PopularAdapter;
 import com.sjq.githubapp.base.BaseFragment;
+import com.sjq.githubapp.javabean.PopularItemEntity;
+import com.sjq.githubapp.javabean.PopularStateEntity;
 import com.sjq.githubapp.presenters.LanguageContentPresenter;
 import com.sjq.githubapp.views.LanguageContentView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,10 +42,13 @@ import com.sjq.githubapp.views.LanguageContentView;
  * Use the {@link LanguageContentFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LanguageContentFragment extends BaseFragment<LanguageContentView, LanguageContentPresenter> implements LanguageContentView {
+public class LanguageContentFragment extends BaseFragment<LanguageContentView, LanguageContentPresenter> implements LanguageContentView, PopularAdapter.onPopularItemClickListener {
 
 
     private OnFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
+    private PopularAdapter madapter;
+    private ArrayList<PopularItemEntity> mlist;
 
     public LanguageContentFragment() {
         // Required empty public constructor
@@ -48,7 +67,8 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
         LanguageContentFragment fragment = new LanguageContentFragment();
         Bundle args = new Bundle();
         args.putString("name",param1);
-        Log.i("TAG","newInstance----->"+param1);
+        Log.i("AAAAAA","newInstance()===>"+param1);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +77,32 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-
+            mPresenter.getPopularItemList(getArguments().getString("name"));
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Nullable
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
+
+    @Override
+    public void updateRecycleViewData(ArrayList<PopularItemEntity> list) {
+           mlist = list;
+            if(madapter == null){
+                madapter = new PopularAdapter(getActivity(),this.mlist,this);
+                recyclerView.setAdapter(madapter);
+            }else{
+                madapter.notifyDataSetChanged();
+                //recyclerView.setAdapter(madapter);
+            }
     }
 
     @Override
@@ -66,16 +110,32 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_language_content, container, false);
-        TextView tv = view.findViewById(R.id.tv);
-
-        tv.setText(getArguments().getString("name"));
+         recyclerView = view.findViewById(R.id.recycle_view);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(RecyclerView.VERTICAL);
+        Log.i("AAAAAA","onCreateView()===>"+getArguments().getString("name"));
+        recyclerView.setLayoutManager(manager);
+        EventBus.getDefault().register(this);
+        //设置分隔线
+        //设置增加或删除条目的动画
+        recyclerView.setItemAnimator( new DefaultItemAnimator());
+        //recyclerView.setAdapter(madapter = new PopularAdapter(getActivity(),new ArrayList<PopularItemEntity>()));
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected LanguageContentPresenter initPresenter() {
         return new LanguageContentPresenter();
     }
+
+
+
 
 
     @Override
@@ -96,4 +156,39 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
     }
 
 
+
+    @Override
+    public void onItemFavoriteStatusChange(int position, boolean newFavoriteStatus) {
+        this.mlist.get(position).setFavorite(newFavoriteStatus);
+        madapter.notifyItemChanged(position);
+    }
+
+
+
+
+    @Override
+    public void onPopularItemClick(int position, PopularItemEntity popularItemEntity) {
+            //mPresenter.onPopularItemClick(position,popularItemEntity);
+        PopularDetailActivity.startToPopularDetailActivity(getActivity(),position,popularItemEntity);
+
+    }
+
+    @Override
+    public void onFavoriteClick(int position, PopularItemEntity popularItemEntity) {
+            mPresenter.onFavoriteClick(position,popularItemEntity);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("AAAAAA","onDestroy()");
+        madapter = null;
+        mlist = null;
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onFavoriteStateChange(PopularStateEntity entity){
+        this.mlist.get(entity.getPosition()).setFavorite(entity.isFavorite());
+        madapter.notifyItemChanged(entity.getPosition());
+
+    }
 }

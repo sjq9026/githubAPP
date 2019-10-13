@@ -7,5 +7,4 @@ import com.sjq.githubapp.views.TrendingView;
 
 public class FavoritePresenter extends BasePresenter<FavoriteView> {
 
-
 }

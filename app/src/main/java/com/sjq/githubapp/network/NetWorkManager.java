@@ -30,7 +30,6 @@ public class NetWorkManager {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
-
         // 初始化okhttp
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
@@ -39,9 +38,10 @@ public class NetWorkManager {
         // 初始化Retrofit
         retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(com.sjq.githubapp.network.Request.HOST)
+                .baseUrl(Request.HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                //.addConverterFactory(CustomGsonConverterFactory.create())
                 .build();
     }
 

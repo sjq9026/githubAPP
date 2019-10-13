@@ -9,6 +9,7 @@ import android.util.Log;
 import com.sjq.githubapp.db.DatabaseContext;
 import com.sjq.githubapp.db.greendao.DaoMaster;
 import com.sjq.githubapp.db.greendao.DaoSession;
+import com.sjq.githubapp.network.NetWorkManager;
 import com.sjq.githubapp.util.UtilsFile;
 
 import java.io.File;
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        NetWorkManager.getInstance().init();
         initGreenDao();
     }
 
