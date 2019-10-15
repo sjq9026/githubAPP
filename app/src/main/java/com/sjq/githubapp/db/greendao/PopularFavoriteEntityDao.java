@@ -30,6 +30,7 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
         public final static Property Description = new Property(3, String.class, "description", false, "DESCRIPTION");
         public final static Property Avatar_url = new Property(4, String.class, "avatar_url", false, "AVATAR_URL");
         public final static Property Stargazers_count = new Property(5, int.class, "stargazers_count", false, "STARGAZERS_COUNT");
+        public final static Property Html_url = new Property(6, String.class, "html_url", false, "HTML_URL");
     }
 
 
@@ -50,7 +51,8 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
                 "\"FULL_NAME\" TEXT," + // 2: full_name
                 "\"DESCRIPTION\" TEXT," + // 3: description
                 "\"AVATAR_URL\" TEXT," + // 4: avatar_url
-                "\"STARGAZERS_COUNT\" INTEGER NOT NULL );"); // 5: stargazers_count
+                "\"STARGAZERS_COUNT\" INTEGER NOT NULL ," + // 5: stargazers_count
+                "\"HTML_URL\" TEXT);"); // 6: html_url
     }
 
     /** Drops the underlying database table. */
@@ -84,6 +86,11 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
             stmt.bindString(5, avatar_url);
         }
         stmt.bindLong(6, entity.getStargazers_count());
+ 
+        String html_url = entity.getHtml_url();
+        if (html_url != null) {
+            stmt.bindString(7, html_url);
+        }
     }
 
     @Override
@@ -111,6 +118,11 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
             stmt.bindString(5, avatar_url);
         }
         stmt.bindLong(6, entity.getStargazers_count());
+ 
+        String html_url = entity.getHtml_url();
+        if (html_url != null) {
+            stmt.bindString(7, html_url);
+        }
     }
 
     @Override
@@ -126,7 +138,8 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // full_name
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // description
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // avatar_url
-            cursor.getInt(offset + 5) // stargazers_count
+            cursor.getInt(offset + 5), // stargazers_count
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // html_url
         );
         return entity;
     }
@@ -139,6 +152,7 @@ public class PopularFavoriteEntityDao extends AbstractDao<PopularFavoriteEntity,
         entity.setDescription(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setAvatar_url(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setStargazers_count(cursor.getInt(offset + 5));
+        entity.setHtml_url(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     @Override

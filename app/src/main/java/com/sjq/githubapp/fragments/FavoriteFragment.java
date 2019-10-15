@@ -4,16 +4,24 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.presenters.FavoritePresenter;
 import com.sjq.githubapp.views.FavoriteView;
+
+import net.lucode.hackware.magicindicator.MagicIndicator;
+import net.lucode.hackware.magicindicator.ViewPagerHelper;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,17 +31,29 @@ import com.sjq.githubapp.views.FavoriteView;
  * Use the {@link FavoriteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FavoriteFragment extends BaseFragment<FavoriteView, FavoritePresenter> {
+public class FavoriteFragment extends BaseFragment<FavoriteView, FavoritePresenter> implements FavoriteView{
     // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
+
+
+
+    private ViewPager viewPager;
 
 
     // TODO: Rename and change types of parameters
     private String mParam1;
 
 
+
+    private MagicIndicator magicIndicator;
+
+
+
+
+
     private OnFragmentInteractionListener mListener;
+    private View mView;
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -52,7 +72,6 @@ public class FavoriteFragment extends BaseFragment<FavoriteView, FavoritePresent
         FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,21 +88,42 @@ public class FavoriteFragment extends BaseFragment<FavoriteView, FavoritePresent
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_favorite, container, false);
+        initView();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
+        return mView;
+    }
+
+    private void initView() {
+        viewPager = mView.findViewById(R.id.view_pager);
+        magicIndicator =mView.findViewById(R.id.magic_indicator);
+        ArrayList<String> mTitleDataList = new ArrayList<>();
+        mTitleDataList.add("Popular");
+        mTitleDataList.add("Trending");
+        magicIndicator.setNavigator(mPresenter.initCommonNavigator(mTitleDataList));
+        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(mTitleDataList,getChildFragmentManager()));
+        ViewPagerHelper.bind(magicIndicator, viewPager);
+
+    }
+
+    @Nullable
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
+
+    @Override
+    public void onTabClick(int index) {
+        viewPager.setCurrentItem(index);
     }
 
     @Override
     protected FavoritePresenter initPresenter() {
-        return new FavoritePresenter();
+        return new FavoritePresenter(this);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction();
-        }
-    }
+
+
 
     @Override
     public void onAttach(Context context) {
@@ -102,5 +142,8 @@ public class FavoriteFragment extends BaseFragment<FavoriteView, FavoritePresent
         mListener = null;
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

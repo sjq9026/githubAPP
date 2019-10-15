@@ -37,7 +37,7 @@ initView();
 
     @Override
     public LoginPresenter initPresenter() {
-        return new LoginPresenter();
+        return new LoginPresenter(this);
     }
 
 

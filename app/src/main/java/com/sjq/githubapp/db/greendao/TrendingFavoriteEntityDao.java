@@ -25,7 +25,14 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
      */
     public static class Properties {
         public final static Property AutoId = new Property(0, Long.class, "autoId", true, "_id");
-        public final static Property TrendingId = new Property(1, int.class, "trendingId", false, "TRENDING_ID");
+        public final static Property Repo = new Property(1, String.class, "repo", false, "REPO");
+        public final static Property Repo_link = new Property(2, String.class, "repo_link", false, "REPO_LINK");
+        public final static Property Desc = new Property(3, String.class, "desc", false, "DESC");
+        public final static Property Lang = new Property(4, String.class, "lang", false, "LANG");
+        public final static Property Stars = new Property(5, String.class, "stars", false, "STARS");
+        public final static Property Forks = new Property(6, String.class, "forks", false, "FORKS");
+        public final static Property Added_stars = new Property(7, String.class, "added_stars", false, "ADDED_STARS");
+        public final static Property AvatarImg = new Property(8, String.class, "avatarImg", false, "AVATAR_IMG");
     }
 
 
@@ -42,7 +49,14 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"TRENDING_FAVORITE_ENTITY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: autoId
-                "\"TRENDING_ID\" INTEGER NOT NULL );"); // 1: trendingId
+                "\"REPO\" TEXT," + // 1: repo
+                "\"REPO_LINK\" TEXT," + // 2: repo_link
+                "\"DESC\" TEXT," + // 3: desc
+                "\"LANG\" TEXT," + // 4: lang
+                "\"STARS\" TEXT," + // 5: stars
+                "\"FORKS\" TEXT," + // 6: forks
+                "\"ADDED_STARS\" TEXT," + // 7: added_stars
+                "\"AVATAR_IMG\" TEXT);"); // 8: avatarImg
     }
 
     /** Drops the underlying database table. */
@@ -59,7 +73,46 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
         if (autoId != null) {
             stmt.bindLong(1, autoId);
         }
-        stmt.bindLong(2, entity.getTrendingId());
+ 
+        String repo = entity.getRepo();
+        if (repo != null) {
+            stmt.bindString(2, repo);
+        }
+ 
+        String repo_link = entity.getRepo_link();
+        if (repo_link != null) {
+            stmt.bindString(3, repo_link);
+        }
+ 
+        String desc = entity.getDesc();
+        if (desc != null) {
+            stmt.bindString(4, desc);
+        }
+ 
+        String lang = entity.getLang();
+        if (lang != null) {
+            stmt.bindString(5, lang);
+        }
+ 
+        String stars = entity.getStars();
+        if (stars != null) {
+            stmt.bindString(6, stars);
+        }
+ 
+        String forks = entity.getForks();
+        if (forks != null) {
+            stmt.bindString(7, forks);
+        }
+ 
+        String added_stars = entity.getAdded_stars();
+        if (added_stars != null) {
+            stmt.bindString(8, added_stars);
+        }
+ 
+        String avatarImg = entity.getAvatarImg();
+        if (avatarImg != null) {
+            stmt.bindString(9, avatarImg);
+        }
     }
 
     @Override
@@ -70,7 +123,46 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
         if (autoId != null) {
             stmt.bindLong(1, autoId);
         }
-        stmt.bindLong(2, entity.getTrendingId());
+ 
+        String repo = entity.getRepo();
+        if (repo != null) {
+            stmt.bindString(2, repo);
+        }
+ 
+        String repo_link = entity.getRepo_link();
+        if (repo_link != null) {
+            stmt.bindString(3, repo_link);
+        }
+ 
+        String desc = entity.getDesc();
+        if (desc != null) {
+            stmt.bindString(4, desc);
+        }
+ 
+        String lang = entity.getLang();
+        if (lang != null) {
+            stmt.bindString(5, lang);
+        }
+ 
+        String stars = entity.getStars();
+        if (stars != null) {
+            stmt.bindString(6, stars);
+        }
+ 
+        String forks = entity.getForks();
+        if (forks != null) {
+            stmt.bindString(7, forks);
+        }
+ 
+        String added_stars = entity.getAdded_stars();
+        if (added_stars != null) {
+            stmt.bindString(8, added_stars);
+        }
+ 
+        String avatarImg = entity.getAvatarImg();
+        if (avatarImg != null) {
+            stmt.bindString(9, avatarImg);
+        }
     }
 
     @Override
@@ -82,7 +174,14 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
     public TrendingFavoriteEntity readEntity(Cursor cursor, int offset) {
         TrendingFavoriteEntity entity = new TrendingFavoriteEntity( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // autoId
-            cursor.getInt(offset + 1) // trendingId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // repo
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // repo_link
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // desc
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // lang
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // stars
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // forks
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // added_stars
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // avatarImg
         );
         return entity;
     }
@@ -90,7 +189,14 @@ public class TrendingFavoriteEntityDao extends AbstractDao<TrendingFavoriteEntit
     @Override
     public void readEntity(Cursor cursor, TrendingFavoriteEntity entity, int offset) {
         entity.setAutoId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setTrendingId(cursor.getInt(offset + 1));
+        entity.setRepo(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setRepo_link(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDesc(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setLang(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setStars(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setForks(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setAdded_stars(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setAvatarImg(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     @Override

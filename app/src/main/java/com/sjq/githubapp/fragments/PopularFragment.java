@@ -1,10 +1,7 @@
 package com.sjq.githubapp.fragments;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 
 
@@ -23,7 +20,6 @@ import android.widget.ImageView;
 
 
 import com.sjq.githubapp.R;
-import com.sjq.githubapp.activities.PopularDetailActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.javabean.LanguageEntity;
 import com.sjq.githubapp.presenters.PopularPresenter;
@@ -106,7 +102,7 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
 
         contentView = inflater.inflate(R.layout.fragment_popular, container, false);
         initView();
-        mPresenter.initLangrage();
+        mPresenter.initlangrage();
         return contentView;
     }
 
@@ -139,7 +135,7 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
 
     @Override
     protected PopularPresenter initPresenter() {
-        return new PopularPresenter();
+        return new PopularPresenter(this);
     }
 
 

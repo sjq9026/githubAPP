@@ -15,15 +15,18 @@ public class PopularFavoriteEntity implements Serializable {
    private String  description;//描述
    private String avatar_url;//头像地址
    private int stargazers_count;//start数
-    @Generated(hash = 1088327037)
+    private String html_url;//网址
+    @Generated(hash = 961595420)
     public PopularFavoriteEntity(Long autoId, int popularId, String full_name,
-            String description, String avatar_url, int stargazers_count) {
+            String description, String avatar_url, int stargazers_count,
+            String html_url) {
         this.autoId = autoId;
         this.popularId = popularId;
         this.full_name = full_name;
         this.description = description;
         this.avatar_url = avatar_url;
         this.stargazers_count = stargazers_count;
+        this.html_url = html_url;
     }
     @Generated(hash = 2005225296)
     public PopularFavoriteEntity() {
@@ -63,5 +66,11 @@ public class PopularFavoriteEntity implements Serializable {
     }
     public void setStargazers_count(int stargazers_count) {
         this.stargazers_count = stargazers_count;
+    }
+    public String getHtml_url() {
+        return this.html_url;
+    }
+    public void setHtml_url(String html_url) {
+        this.html_url = html_url;
     }
 }

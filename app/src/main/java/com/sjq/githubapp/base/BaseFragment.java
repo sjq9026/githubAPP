@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 
-public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V>>
+public abstract class BaseFragment<V extends BaseView, T extends BasePresenter>
                                                     extends Fragment implements BaseView {
     public T mPresenter;
 
@@ -25,7 +25,6 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = initPresenter();
-        mPresenter.onAttach((V) this);
         Log.i("AAAAAA","BaseFragment---onCreate()");
 
     }
@@ -55,7 +54,7 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.onDestory();
+        mPresenter.onDestroy();
     }
 
     @Override

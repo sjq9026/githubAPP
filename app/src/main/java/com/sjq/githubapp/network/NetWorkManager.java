@@ -1,6 +1,12 @@
 package com.sjq.githubapp.network;
 
 
+
+
+import java.net.URI;
+import java.net.URL;
+
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -39,6 +45,17 @@ public class NetWorkManager {
         retrofit = new Retrofit.Builder()
                 .client(client)
                 .baseUrl(Request.HOST)
+                .callFactory(new CallFactoryProxy(client) {
+                    @Override
+                    protected HttpUrl getNewUrl(String baseUrlName, okhttp3.Request request) {
+                        if (baseUrlName.equals(Request.TRENDING_HOST)) {
+                            String oldUrl = request.url().toString();
+                            String newUrl = oldUrl.replace(Request.HOST,Request.TRENDING_HOST);
+                            return HttpUrl.get(URI.create(newUrl));
+                        }
+                        return null;
+                    }
+                })
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 //.addConverterFactory(CustomGsonConverterFactory.create())

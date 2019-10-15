@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,8 +11,7 @@ import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.javabean.PopularItemEntity;
-
-import org.w3c.dom.Text;
+import com.sjq.githubapp.javabean.TrendingItemEntity;
 
 import java.util.ArrayList;
 
@@ -22,26 +19,19 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder>  {
-   private ArrayList<PopularItemEntity> list;
-    private onPopularItemClickListener listener;
+public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.PopularViewHolder>  {
+   private ArrayList<TrendingItemEntity> list;
+    private onTrendingItemClickListener listener;
     private Context context;
-    public PopularAdapter(Context context,ArrayList<PopularItemEntity> list) {
+    public TrendingAdapter(Context context, ArrayList<TrendingItemEntity> list) {
         this.list = list;
         this.context = context;
     }
 
-    public PopularAdapter(Context context,ArrayList<PopularItemEntity> list,onPopularItemClickListener listener) {
+    public TrendingAdapter(Context context, ArrayList<TrendingItemEntity> list, onTrendingItemClickListener listener) {
         this.list = list;
         this.listener = listener;
         this.context = context;
-    }
-
-
-    public void dataChange(ArrayList<PopularItemEntity> list){
-        this.list = new ArrayList<>();
-        this.list.addAll(list);
-        notifyDataSetChanged();
     }
 
     @NonNull
@@ -53,22 +43,22 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
 
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, final int position) {
-    final PopularItemEntity item = list.get(position);
-        holder.mtitle.setText(list.get(position).getFull_name());
-    holder.mInfo.setText(list.get(position).getDescription());
-    holder.mStart_tv.setText(list.get(position).getStargazers_count()+"");
+    final TrendingItemEntity item = list.get(position);
+        holder.mtitle.setText(item.getRepo());
+    holder.mInfo.setText(item.getDesc());
+    holder.mStart_tv.setText(item.getStars());
     if(item.isFavorite()){
         holder.imageButton.setBackgroundResource(R.drawable.favorite_red);
     }else{
         holder.imageButton.setBackgroundResource(R.drawable.favorite_gray);
     }
-
+    if(item.getAvatars()!=null &&  item.getAvatars().size() > 0){
         Glide.with(context)
-
-                .load(list.get(position).getOwner().getAvatar_url())
-//                .placeholder(R.drawable.defalute_img)
-
+                .load(list.get(position).getAvatars().get(0))
                 .into(holder.mAuthor_img);
+    }
+
+
 
 
 
@@ -76,7 +66,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
     @Override
     public void onClick(View view) {
         if(listener != null){
-            listener.onPopularItemClick(position,item);
+            listener.onTrendingItemClick(position,item);
         }
     }
     });
@@ -115,8 +105,8 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         }
     }
 
-   public interface onPopularItemClickListener{
-        void onPopularItemClick(int position,PopularItemEntity popularItemEntity);
-        void onFavoriteClick(int position,PopularItemEntity popularItemEntity);
+   public interface onTrendingItemClickListener{
+        void onTrendingItemClick(int position, TrendingItemEntity trendingItemEntity);
+        void onFavoriteClick(int position, TrendingItemEntity trendingItemEntity);
     }
 }

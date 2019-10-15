@@ -16,6 +16,8 @@ import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseMvpActivity;
 import com.sjq.githubapp.javabean.PopularItemEntity;
 import com.sjq.githubapp.javabean.PopularStateEntity;
+import com.sjq.githubapp.javabean.TrendingItemEntity;
+import com.sjq.githubapp.javabean.TrendingStateEntity;
 import com.sjq.githubapp.presenters.PopularDetailPresenter;
 import com.sjq.githubapp.views.PopularDetailView;
 import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
@@ -25,8 +27,11 @@ import org.greenrobot.eventbus.EventBus;
 public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,PopularDetailPresenter>implements View.OnClickListener,PopularDetailView {
 
    private PopularItemEntity popularItemEntity;
+   private TrendingItemEntity trendingItemEntity;
    private final static String Popular_Param_Name = "PopularItem";
-    private final static String Popular_Param_Position = "Position";
+    private final static String Param_Position = "Position";
+    private final static  String Trending_Param_Name = "TrendingItem";
+
 
     private WebView mWebview;
    private ImageView back_img;
@@ -43,8 +48,14 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popular_detail);
         popularItemEntity = (PopularItemEntity) getIntent().getSerializableExtra(Popular_Param_Name);
-        originalFavorite = popularItemEntity.isFavorite();
-        position = getIntent().getIntExtra(Popular_Param_Position,0);
+        trendingItemEntity = (TrendingItemEntity) getIntent().getSerializableExtra(Trending_Param_Name);
+        if(popularItemEntity!=null){
+            originalFavorite = popularItemEntity.isFavorite();
+        }else{
+            originalFavorite = trendingItemEntity.isFavorite();
+        }
+
+        position = getIntent().getIntExtra(Param_Position,0);
         initView();
 
     }
@@ -57,7 +68,7 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
 
     @Override
     public PopularDetailPresenter initPresenter() {
-        return new PopularDetailPresenter();
+        return new PopularDetailPresenter(this);
     }
 
 
@@ -68,13 +79,25 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
         favorite_img = findViewById(R.id.favorite_img);
         back_img.setOnClickListener(this);
         favorite_img.setOnClickListener(this);
-        if(popularItemEntity.isFavorite()){
-            favorite_img.setBackgroundResource(R.drawable.favorite_red);
+        if(popularItemEntity != null){
+            if(popularItemEntity.isFavorite()){
+                favorite_img.setBackgroundResource(R.drawable.favorite_red);
+            }else{
+                favorite_img.setBackgroundResource(R.drawable.favorite_white);
+            }
+            title_tv.setText(popularItemEntity.getHtml_url());
+            mWebview.loadUrl(popularItemEntity.getHtml_url());
         }else{
-            favorite_img.setBackgroundResource(R.drawable.favorite_white);
+            if(trendingItemEntity.isFavorite()){
+                favorite_img.setBackgroundResource(R.drawable.favorite_red);
+            }else{
+                favorite_img.setBackgroundResource(R.drawable.favorite_white);
+            }
+            title_tv.setText(trendingItemEntity.getRepo_link());
+            mWebview.loadUrl(trendingItemEntity.getRepo_link());
         }
-        title_tv.setText(popularItemEntity.getHtml_url());
-        mWebview.loadUrl(popularItemEntity.getHtml_url());
+
+
         mWebview.setWebViewClient(new WebViewClient(){
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -113,7 +136,14 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
     public static void startToPopularDetailActivity(Context context,int position, PopularItemEntity popularItemEntity){
         Intent intent = new Intent(context,PopularDetailActivity.class);
         intent.putExtra(Popular_Param_Name,popularItemEntity);
-        intent.putExtra(Popular_Param_Position,position);
+        intent.putExtra(Param_Position,position);
+        context.startActivity(intent);
+    }
+
+    public static void startToPopularDetailActivity(Context context,int position, TrendingItemEntity trendingItemEntity){
+        Intent intent = new Intent(context,PopularDetailActivity.class);
+        intent.putExtra(Trending_Param_Name,trendingItemEntity);
+        intent.putExtra(Param_Position,position);
         context.startActivity(intent);
     }
 
@@ -126,7 +156,11 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
             case R.id.title_tv:
                 break;
             case R.id.favorite_img:
-                mPresenter.onFavoriteClick(0,popularItemEntity);
+                if(popularItemEntity != null){
+                    mPresenter.onFavoriteClick(0,popularItemEntity);
+                }else{
+                    mPresenter.onFavoriteClick(0,trendingItemEntity);
+                }
                 break;
         }
     }
@@ -136,19 +170,34 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
         if(mWebview.canGoBack()){
             mWebview.goBack();
         }else {
-            if(originalFavorite != popularItemEntity.isFavorite()){
-                PopularStateEntity popularStateEntity = new PopularStateEntity();
-                popularStateEntity.setFavorite(popularItemEntity.isFavorite());
-                popularStateEntity.setPosition(position);
-                EventBus.getDefault().post(popularStateEntity);
+            if(popularItemEntity != null){
+                if(originalFavorite != popularItemEntity.isFavorite()){
+                    PopularStateEntity popularStateEntity = new PopularStateEntity();
+                    popularStateEntity.setFavorite(popularItemEntity.isFavorite());
+                    popularStateEntity.setPosition(position);
+                    EventBus.getDefault().post(popularStateEntity);
+                }
+            }else{
+                if(originalFavorite != trendingItemEntity.isFavorite()){
+                    TrendingStateEntity popularStateEntity = new TrendingStateEntity();
+                    popularStateEntity.setFavorite(trendingItemEntity.isFavorite());
+                    popularStateEntity.setPosition(position);
+                    EventBus.getDefault().post(popularStateEntity);
+                }
             }
+
             super.onBackPressed();
         }
     }
 
     @Override
     public void onItemFavoriteStatusChange(int position, boolean isFavorite) {
-       popularItemEntity.setFavorite(isFavorite);
+       if(popularItemEntity != null){
+           popularItemEntity.setFavorite(isFavorite);
+       }else{
+           trendingItemEntity.setFavorite(isFavorite);
+       }
+
         if(isFavorite){
             favorite_img.setBackgroundResource(R.drawable.favorite_red);
         }else{

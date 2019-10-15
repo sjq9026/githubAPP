@@ -26,8 +26,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 
-public class MainPresenter extends BasePresenter<MainView> {
+public class MainPresenter implements BasePresenter {
 
 
+    @Override
+    public void onDestroy() {
 
+    }
 }

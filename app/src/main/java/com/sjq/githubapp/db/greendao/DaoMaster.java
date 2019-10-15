@@ -25,7 +25,6 @@ public class DaoMaster extends AbstractDaoMaster {
         LanguageEntityDao.createTable(db, ifNotExists);
         PopularFavoriteEntityDao.createTable(db, ifNotExists);
         TrendingFavoriteEntityDao.createTable(db, ifNotExists);
-        PopularStateEntityDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
@@ -34,7 +33,6 @@ public class DaoMaster extends AbstractDaoMaster {
         LanguageEntityDao.dropTable(db, ifExists);
         PopularFavoriteEntityDao.dropTable(db, ifExists);
         TrendingFavoriteEntityDao.dropTable(db, ifExists);
-        PopularStateEntityDao.dropTable(db, ifExists);
     }
 
     /**
@@ -57,7 +55,6 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(LanguageEntityDao.class);
         registerDaoClass(PopularFavoriteEntityDao.class);
         registerDaoClass(TrendingFavoriteEntityDao.class);
-        registerDaoClass(PopularStateEntityDao.class);
     }
 
     public DaoSession newSession() {

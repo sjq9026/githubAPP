@@ -3,12 +3,16 @@ import android.util.Log;
 
 
 import com.sjq.githubapp.base.BasePresenter;
+import com.sjq.githubapp.javabean.OwnerEntity;
 import com.sjq.githubapp.javabean.PopularFavoriteEntity;
 import com.sjq.githubapp.javabean.PopularItemEntity;
 import com.sjq.githubapp.javabean.PopularResponse;
 
+import com.sjq.githubapp.javabean.PopularStateEntity;
 import com.sjq.githubapp.models.LanguageContentModelImpl;
 import com.sjq.githubapp.views.LanguageContentView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -17,11 +21,17 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class LanguageContentPresenter extends BasePresenter<LanguageContentView> {
+public class LanguageContentPresenter implements BasePresenter {
+
+
     private LanguageContentModelImpl model;
-    public LanguageContentPresenter() {
+    private LanguageContentView mView;
+    public LanguageContentPresenter(LanguageContentView view) {
         model = new LanguageContentModelImpl();
+        mView = view;
     }
+
+
 
 
     public  void  getPopularItemList(String languageName){
@@ -60,7 +70,7 @@ public class LanguageContentPresenter extends BasePresenter<LanguageContentView>
                                 }
                             }
                         }
-                        view.updateRecycleViewData(listResponse.getItemEntities());
+                        mView.updateRecycleViewData(listResponse.getItemEntities());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -69,6 +79,29 @@ public class LanguageContentPresenter extends BasePresenter<LanguageContentView>
 
                     }});
     }
+
+
+    public  void getFavoritePopularItemList(){
+
+        ArrayList<PopularFavoriteEntity> list = model.getFavoritePopular();
+        ArrayList<PopularItemEntity> result_list = new ArrayList<>();
+        for (PopularFavoriteEntity favoriteEntity : list) {
+            PopularItemEntity itemEntity = new PopularItemEntity();
+            itemEntity.setId(favoriteEntity.getPopularId());
+            OwnerEntity ownerEntity = new OwnerEntity();
+            ownerEntity.setAvatar_url(itemEntity.getArchive_url());
+            itemEntity.setOwner(ownerEntity);
+            itemEntity.setDescription(favoriteEntity.getDescription());
+            itemEntity.setStargazers_count(favoriteEntity.getStargazers_count());
+            itemEntity.setFull_name(favoriteEntity.getFull_name());
+            itemEntity.setHtml_url(favoriteEntity.getHtml_url());
+            itemEntity.setFavorite(true);
+            result_list.add(itemEntity);
+
+        }
+        mView.updateRecycleViewData(result_list);
+    }
+
 
 
 
@@ -80,12 +113,27 @@ public class LanguageContentPresenter extends BasePresenter<LanguageContentView>
         favoriteEntity.setPopularId(popularItemEntity.getId());
         favoriteEntity.setStargazers_count(popularItemEntity.getStargazers_count());
         favoriteEntity.setFull_name(popularItemEntity.getFull_name());
+        favoriteEntity.setHtml_url(popularItemEntity.getHtml_url());
         if(!popularItemEntity.isFavorite()){
             model.addFavoritePopularData(favoriteEntity);
-            view.onItemFavoriteStatusChange(position,true);
+//            //为了favoritefragment 实时刷新
+//            PopularStateEntity popularStateEntity = new PopularStateEntity();
+//            popularStateEntity.setFavorite(true);
+//            popularStateEntity.setPosition(position);
+//            EventBus.getDefault().post(popularStateEntity);
+            mView.onItemFavoriteStatusChange(position,true);
         }else{
             model.removeFavoritePopularData(favoriteEntity);
-            view.onItemFavoriteStatusChange(position,false);
+//            PopularStateEntity popularStateEntity = new PopularStateEntity();
+//            popularStateEntity.setFavorite(false);
+//            popularStateEntity.setPosition(position);
+//            EventBus.getDefault().post(popularStateEntity);
+            mView.onItemFavoriteStatusChange(position,false);
         }
     }
+    @Override
+    public void onDestroy() {
+        mView = null;
+    }
+
 }

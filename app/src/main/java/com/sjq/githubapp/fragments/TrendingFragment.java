@@ -2,18 +2,14 @@ package com.sjq.githubapp.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sjq.githubapp.R;
@@ -30,7 +26,7 @@ import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import java.util.ArrayList;
 
 
-public class TrendingFragment extends BaseFragment<PopularView, PopularPresenter> implements PopularView{
+public class TrendingFragment extends BaseFragment<PopularView, TrendingPresenter> implements PopularView {
 
     private static final String ARG_PARAM1 = "param1";
 
@@ -102,7 +98,6 @@ public class TrendingFragment extends BaseFragment<PopularView, PopularPresenter
     @Override
     public void onTabClick(int index) {
         title_tv.setText(mLanguages.get(index).getName()+"优质项目推荐");
-
         viewPager.setCurrentItem(index);
     }
 
@@ -124,7 +119,7 @@ public class TrendingFragment extends BaseFragment<PopularView, PopularPresenter
         // Inflate the layout for this fragment
         contentView = inflater.inflate(R.layout.fragment_trending, container, false);
         initView();
-        mPresenter.initLangrage();
+        mPresenter.initlangrage();
         return contentView;
     }
 
@@ -135,8 +130,8 @@ public class TrendingFragment extends BaseFragment<PopularView, PopularPresenter
     }
 
     @Override
-    protected PopularPresenter initPresenter() {
-        return new PopularPresenter();
+    protected TrendingPresenter initPresenter() {
+        return new TrendingPresenter(this);
     }
 
 

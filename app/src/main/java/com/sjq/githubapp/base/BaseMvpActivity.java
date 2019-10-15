@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.PermissionChecker;
 
-public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends AppCompatActivity implements BaseView {
+public abstract class BaseMvpActivity<V, T extends BasePresenter> extends AppCompatActivity implements BaseView {
 
     public T mPresenter;
     //6.0权限
@@ -27,7 +27,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
         super.onCreate(savedInstanceState);
 
         mPresenter = initPresenter();
-        mPresenter.onAttach((V) this);
+
 
         //StatusBarUtil.setTransparent(this);
         StatusBarUtil.setColorNoTranslucent(this, Color.parseColor("#03A9F4"));
@@ -40,7 +40,7 @@ public abstract class BaseMvpActivity<V, T extends BasePresenter<V>> extends App
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.onDestory();
+        mPresenter.onDestroy();
     }
 
     public abstract T initPresenter();

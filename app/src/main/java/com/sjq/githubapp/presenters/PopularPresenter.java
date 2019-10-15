@@ -37,21 +37,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
-public class PopularPresenter extends BasePresenter<PopularView> {
+public class PopularPresenter implements BasePresenter {
     PopularModel model;
+    private PopularView mView;
 
-    public PopularPresenter() {
+    public PopularPresenter(PopularView view) {
+        mView = view;
         model = new PopularModelImpl();
     }
 
-    public void initLangrage() {
+    public void initlangrage() {
         ArrayList<LanguageEntity> mLanguages = model.getLanguage();
         //如果数据库中没有数据，那么从本地文件中解析
         if (mLanguages == null || mLanguages.size() == 0) {
             InputStreamReader inputStreamReader;
             mLanguages = new ArrayList<>();
             try {
-                inputStreamReader = new InputStreamReader(view.getContext().getAssets().open("LanguageJsonStr.json"), "UTF-8");
+                inputStreamReader = new InputStreamReader(mView.getContext().getAssets().open("LanguageJsonStr.json"), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(
                         inputStreamReader);
                 String line;
@@ -77,14 +79,14 @@ public class PopularPresenter extends BasePresenter<PopularView> {
             }
         }
         //更新UI
-        view.refreshLanguage(mLanguages);
+        mView.refreshLanguage(mLanguages);
     }
 
 
     public MyFragmentPagerAdapter getFragmentPagerAdapter(ArrayList<LanguageEntity> languageEntities, FragmentManager manager) {
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (int i = 0; i < languageEntities.size(); i++) {
-            fragments.add(LanguageContentFragment.newInstance(languageEntities.get(i).getName()));
+            fragments.add(LanguageContentFragment.newInstance(languageEntities.get(i).getName(),LanguageContentFragment.NET_WORK));
         }
         MyFragmentPagerAdapter myFragmentPagerAdapter = new MyFragmentPagerAdapter(manager, fragments);
         return myFragmentPagerAdapter;
@@ -92,7 +94,7 @@ public class PopularPresenter extends BasePresenter<PopularView> {
     }
 
     public CommonNavigator initCommonNavigator(final ArrayList<LanguageEntity> mTitleDataList) {
-        CommonNavigator commonNavigator = new CommonNavigator(view.getContext());
+        CommonNavigator commonNavigator = new CommonNavigator(mView.getContext());
         commonNavigator.setEnablePivotScroll(true);
 
         CommonNavigatorAdapter adapter = new CommonNavigatorAdapter() {
@@ -106,7 +108,7 @@ public class PopularPresenter extends BasePresenter<PopularView> {
                 SimplePagerTitleView colorTransitionPagerTitleView = new SimplePagerTitleView(context);
 
                 colorTransitionPagerTitleView.setNormalColor(R.color.white);
-                colorTransitionPagerTitleView.setTextColor(view.getContext().getResources().getColor(R.color.white));
+                colorTransitionPagerTitleView.setTextColor(mView.getContext().getResources().getColor(R.color.white));
                 colorTransitionPagerTitleView.setSelectedColor(R.color.white);
                 colorTransitionPagerTitleView.setText(mTitleDataList.get(index).getName());
 //                ClipPagerTitleView clipPagerTitleView = new ClipPagerTitleView(context);
@@ -119,7 +121,7 @@ public class PopularPresenter extends BasePresenter<PopularView> {
                 colorTransitionPagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View m_view) {
-                        view.onTabClick(index);
+                        mView.onTabClick(index);
                     }
                 });
                 return colorTransitionPagerTitleView;
@@ -140,4 +142,8 @@ public class PopularPresenter extends BasePresenter<PopularView> {
     }
 
 
+    @Override
+    public void onDestroy() {
+
+    }
 }
