@@ -34,6 +34,22 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Popula
         this.context = context;
     }
 
+    public void dataChange(ArrayList<TrendingItemEntity> list){
+        this.list = new ArrayList<>();
+        this.list.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

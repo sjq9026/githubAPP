@@ -16,5 +16,7 @@ public interface TrendingContentView extends BaseView {
 
         void onItemFavoriteStatusChange(int position, boolean newFavoriteStatus);
 
+        void refreshError();
+
 
 }

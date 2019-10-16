@@ -37,7 +37,7 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
    private ImageView back_img;
    private TextView title_tv;
    private ImageView favorite_img;
-    private LoadingDialog mLoadingView;
+
     //原始的收藏状态
     private boolean originalFavorite = false;
     private int position = 0;
@@ -102,20 +102,13 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                mLoadingView = new LoadingDialog(PopularDetailActivity.this);
-                mLoadingView.setLoadingText("加载中")
-                        .setSuccessText("加载成功")//显示加载成功时的文字
-                        //.setFailedText("加载失败")
-                        .setInterceptBack(true)
-                        .setLoadSpeed(LoadingDialog.Speed.SPEED_ONE)
-                        .setRepeatCount(1000);
-                mLoadingView.show();
+
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                mLoadingView.close();
+
             }
         });
         WebChromeClient chromeClient = new WebChromeClient(){
@@ -172,20 +165,22 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
         }else {
             if(popularItemEntity != null){
                 if(originalFavorite != popularItemEntity.isFavorite()){
+                    //因为涉及到多页面刷新，每个页面的操作和position位置不一样，所以用eventbus
                     PopularStateEntity popularStateEntity = new PopularStateEntity();
                     popularStateEntity.setFavorite(popularItemEntity.isFavorite());
                     popularStateEntity.setPosition(position);
+                    popularStateEntity.setPopular_id(popularItemEntity.getId());
                     EventBus.getDefault().post(popularStateEntity);
                 }
             }else{
                 if(originalFavorite != trendingItemEntity.isFavorite()){
                     TrendingStateEntity popularStateEntity = new TrendingStateEntity();
                     popularStateEntity.setFavorite(trendingItemEntity.isFavorite());
+                    popularStateEntity.setRepo(trendingItemEntity.getRepo());
                     popularStateEntity.setPosition(position);
                     EventBus.getDefault().post(popularStateEntity);
                 }
             }
-
             super.onBackPressed();
         }
     }

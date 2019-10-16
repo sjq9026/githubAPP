@@ -15,7 +15,9 @@ public interface LanguageContentView extends BaseView {
 
         void updateRecycleViewData(ArrayList<PopularItemEntity> list);
 
-        void onItemFavoriteStatusChange(int position,boolean newFavoriteStatus);
+        void onItemFavoriteStatusChange(int position,boolean newFavoriteStatus, PopularItemEntity popularItemEntity);
+
+        void refreshError();
 
 
 }

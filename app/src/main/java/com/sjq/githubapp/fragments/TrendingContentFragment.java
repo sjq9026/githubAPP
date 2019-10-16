@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.activities.PopularDetailActivity;
 import com.sjq.githubapp.adapters.PopularAdapter;
@@ -58,6 +62,7 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
     private RecyclerView recyclerView;
     private TrendingAdapter madapter;
     private ArrayList<TrendingItemEntity> mlist;
+    private SmartRefreshLayout refresh_layout;
     private View view;
 
     public TrendingContentFragment() {
@@ -93,6 +98,7 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_trending_content, container, false);
+        refresh_layout = view.findViewById(R.id.refresh_layout);
         recyclerView = view.findViewById(R.id.recycle_view);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(RecyclerView.VERTICAL);
@@ -104,11 +110,25 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
         recyclerView.setItemAnimator( new DefaultItemAnimator());
         if (getArguments() != null) {
             if(getArguments().get(TYPE).equals(TrendingContentFragment.NET_WORK)){
+                refresh_layout.autoRefresh();
                 mPresenter.getTrendingItemList(getArguments().getString(ARG_PARAM1),"weekly");
             }else {
                 mPresenter.getFavoriteTrendingItemList();
             }
         }
+        refresh_layout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                if (getArguments() != null) {
+                    if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
+                        mPresenter.getTrendingItemList(getArguments().getString(ARG_PARAM1),"weekly");
+                    }else{
+                        mPresenter.getFavoriteTrendingItemList();
+                    }
+                }
+            }
+        });
+
         return view;
     }
 
@@ -138,22 +158,36 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
 
     @Override
     public void updateRecycleViewData(ArrayList<TrendingItemEntity> list) {
+        refresh_layout.finishRefresh();
         mlist = list;
         if(madapter == null){
             madapter = new TrendingAdapter(getActivity(),this.mlist,this);
+            madapter.setHasStableIds(true);
             recyclerView.setAdapter(madapter);
         }else{
-            madapter.notifyDataSetChanged();
+            madapter.dataChange(list);
             //recyclerView.setAdapter(madapter);
         }
     }
 
     @Override
     public void onItemFavoriteStatusChange(int position, boolean newFavoriteStatus) {
-        this.mlist.get(position).setFavorite(newFavoriteStatus);
-        madapter.notifyItemChanged(position);
+//        if(getArguments() != null &&  getArguments().getString(TYPE).equals(NET_WORK)){
+//            this.mlist.get(position).setFavorite(newFavoriteStatus);
+//            madapter.notifyItemChanged(position);
+//        }else{
+//           TrendingStateEntity popularStateEntity = new TrendingStateEntity();
+//           popularStateEntity.setFavorite(newFavoriteStatus);
+//           popularStateEntity.setPosition(position);
+//           EventBus.getDefault().post(popularStateEntity);
+//        }
+
     }
 
+    @Override
+    public void refreshError() {
+        refresh_layout.finishRefresh(false);
+    }
 
 
     @Override
@@ -165,7 +199,6 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
     @Override
     public void onFavoriteClick(int position, TrendingItemEntity trendingItemEntity) {
         mPresenter.onFavoriteClick(position,trendingItemEntity);
-
     }
 
     @Override
@@ -181,16 +214,44 @@ public class TrendingContentFragment extends BaseFragment<TrendingContentView, T
     public void onFavoriteStateChange(TrendingStateEntity entity){
         if(getArguments() != null){
             if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
-                this.mlist.get(entity.getPosition()).setFavorite(entity.isFavorite());
-                madapter.notifyItemChanged(entity.getPosition());
-            }else{
-                //当是收藏fragment的时候，如果从别的页面点击了添加，这里直接从新查找一边
-                if(entity.getIsFavorite()){
-                    mPresenter.getFavoriteTrendingItemList();
-                }else{
-                    this.mlist.remove(entity.getPosition());
+                if(this.mlist != null){
+                    int index = -1;
+                    for (int i=0;i<this.mlist.size();i++) {
+                        if(this.mlist.get(i).getRepo().equals(entity.getRepo()) ){
+                            this.mlist.get(i).setFavorite(entity.getIsFavorite());
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index > -1){
+                        madapter.notifyItemChanged(index);
+                    }
                 }
-                madapter.notifyDataSetChanged();
+            }else{
+
+                if(this.mlist != null){
+                    int index = -1;
+                    for (int i=0;i<this.mlist.size();i++) {
+                        if(this.mlist.get(i).getRepo().equals(entity.getRepo()) ){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index > -1){
+                        madapter.notifyItemChanged(index);
+                    }
+                    //当是收藏fragment的时候，如果从别的页面点击了添加，这里直接从新查找一边
+                    if(entity.getIsFavorite()){
+                        mPresenter.getFavoriteTrendingItemList();
+                    }else{
+                        this.mlist.remove(index);
+                    }
+                    madapter.dataChange(this.mlist);
+                }
+
+
+
+
             }
         }
 

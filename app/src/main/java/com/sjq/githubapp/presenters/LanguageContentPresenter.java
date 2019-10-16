@@ -76,6 +76,9 @@ public class LanguageContentPresenter implements BasePresenter {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.i("AAAAAA","getPopularItemList()--->"+throwable.getMessage());
+                               if(mView!=null){
+                                   mView.refreshError();
+                               }
 
                     }});
     }
@@ -114,22 +117,20 @@ public class LanguageContentPresenter implements BasePresenter {
         favoriteEntity.setStargazers_count(popularItemEntity.getStargazers_count());
         favoriteEntity.setFull_name(popularItemEntity.getFull_name());
         favoriteEntity.setHtml_url(popularItemEntity.getHtml_url());
+        //因为涉及到多页面刷新，每个页面的操作和position位置不一样，所以用eventbus
+        PopularStateEntity popularStateEntity = new PopularStateEntity();
         if(!popularItemEntity.isFavorite()){
             model.addFavoritePopularData(favoriteEntity);
-//            //为了favoritefragment 实时刷新
-//            PopularStateEntity popularStateEntity = new PopularStateEntity();
-//            popularStateEntity.setFavorite(true);
-//            popularStateEntity.setPosition(position);
-//            EventBus.getDefault().post(popularStateEntity);
-            mView.onItemFavoriteStatusChange(position,true);
+            //mView.onItemFavoriteStatusChange(position,true,popularItemEntity);
+            popularStateEntity.setFavorite(true);
         }else{
             model.removeFavoritePopularData(favoriteEntity);
-//            PopularStateEntity popularStateEntity = new PopularStateEntity();
-//            popularStateEntity.setFavorite(false);
-//            popularStateEntity.setPosition(position);
-//            EventBus.getDefault().post(popularStateEntity);
-            mView.onItemFavoriteStatusChange(position,false);
+            popularStateEntity.setFavorite(false);
+            //mView.onItemFavoriteStatusChange(position,false,popularItemEntity);
         }
+        popularStateEntity.setPosition(position);
+        popularStateEntity.setPopular_id(popularItemEntity.getId());
+        EventBus.getDefault().post(popularStateEntity);
     }
     @Override
     public void onDestroy() {

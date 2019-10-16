@@ -9,12 +9,15 @@ import com.sjq.githubapp.javabean.PopularResponse;
 import com.sjq.githubapp.javabean.TrendingFavoriteEntity;
 import com.sjq.githubapp.javabean.TrendingItemEntity;
 import com.sjq.githubapp.javabean.TrendingResponse;
+import com.sjq.githubapp.javabean.TrendingStateEntity;
 import com.sjq.githubapp.models.LanguageContentModelImpl;
 import com.sjq.githubapp.models.TrendingContentModelImpl;
 import com.sjq.githubapp.views.LanguageContentView;
 import com.sjq.githubapp.views.PopularView;
 import com.sjq.githubapp.views.TrendingContentView;
 import com.sjq.githubapp.views.TrendingView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -59,6 +62,9 @@ public class TrendingListPresenter implements BasePresenter {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.i("AAAAAA","getPopularItemList()--->"+throwable.getMessage());
+                        if(mView != null){
+                            mView.refreshError();
+                        }
 
                     }});
 
@@ -100,13 +106,20 @@ public class TrendingListPresenter implements BasePresenter {
         favoriteEntity.setRepo_link(trendingItemEntity.getRepo_link());
         favoriteEntity.setStars(trendingItemEntity.getStars());
 
+        TrendingStateEntity popularStateEntity = new TrendingStateEntity();
+
+        popularStateEntity.setRepo(trendingItemEntity.getRepo());
+        popularStateEntity.setPosition(position);
         if(!trendingItemEntity.isFavorite()){
             model.addFavoriteTrendingData(favoriteEntity);
-            mView.onItemFavoriteStatusChange(position,true);
+            popularStateEntity.setFavorite(true);
+            //mView.onItemFavoriteStatusChange(position,true);
         }else{
             model.removeFavoriteTrendingData(favoriteEntity);
-            mView.onItemFavoriteStatusChange(position,false);
+            popularStateEntity.setFavorite(false);
+            //mView.onItemFavoriteStatusChange(position,false);
         }
+        EventBus.getDefault().post(popularStateEntity);
     }
 
 

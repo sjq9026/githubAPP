@@ -46,8 +46,9 @@ public class LanguageContentModelImpl implements LanguageContentModel {
     public void removeFavoritePopularData(PopularFavoriteEntity favoriteEntity) {
        // MyApplication.getmDaoSession().getPopularFavoriteEntityDao().hasKey(favoriteEntity);
         PopularFavoriteEntity entity = MyApplication.getmDaoSession().getPopularFavoriteEntityDao().queryBuilder().where(PopularFavoriteEntityDao.Properties.PopularId.eq(favoriteEntity.getPopularId())).unique();
-
-        MyApplication.getmDaoSession().getPopularFavoriteEntityDao().delete(entity);
+        if(entity != null){
+            MyApplication.getmDaoSession().getPopularFavoriteEntityDao().delete(entity);
+        }
        // MyApplication.getmDaoSession().getPopularFavoriteEntityDao().insertOrReplace(favoriteEntity);
 
     }

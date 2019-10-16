@@ -10,13 +10,20 @@ public class TrendingStateEntity implements Serializable {
     private static final long serialVersionUID = 51112871008L;
    private int position;
    private boolean isFavorite;
+   private String repo;
 
     public TrendingStateEntity() {
 
     }
 
 
+    public String getRepo() {
+        return repo;
+    }
 
+    public void setRepo(String repo) {
+        this.repo = repo;
+    }
 
     public TrendingStateEntity(int position, boolean isFavorite) {
         this.position = position;

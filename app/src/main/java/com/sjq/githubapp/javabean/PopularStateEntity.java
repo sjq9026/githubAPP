@@ -1,22 +1,29 @@
 package com.sjq.githubapp.javabean;
 
-import org.greenrobot.greendao.annotation.Entity;
+
 
 import java.io.Serializable;
-import org.greenrobot.greendao.annotation.Generated;
+
 
 
 public class PopularStateEntity implements Serializable {
     private static final long serialVersionUID = 5312871008L;
    private int position;
    private boolean isFavorite;
+   private int popular_id;
 
     public PopularStateEntity() {
 
     }
 
 
+    public int getPopular_id() {
+        return popular_id;
+    }
 
+    public void setPopular_id(int popular_id) {
+        this.popular_id = popular_id;
+    }
 
     public PopularStateEntity(int position, boolean isFavorite) {
         this.position = position;

@@ -44,6 +44,16 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         notifyDataSetChanged();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,13 +65,13 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
     public void onBindViewHolder(@NonNull PopularViewHolder holder, final int position) {
     final PopularItemEntity item = list.get(position);
         holder.mtitle.setText(list.get(position).getFull_name());
-    holder.mInfo.setText(list.get(position).getDescription());
-    holder.mStart_tv.setText(list.get(position).getStargazers_count()+"");
-    if(item.isFavorite()){
-        holder.imageButton.setBackgroundResource(R.drawable.favorite_red);
-    }else{
-        holder.imageButton.setBackgroundResource(R.drawable.favorite_gray);
-    }
+        holder.mInfo.setText(list.get(position).getDescription());
+        holder.mStart_tv.setText(list.get(position).getStargazers_count()+"");
+            if(item.isFavorite()){
+                holder.imageButton.setBackgroundResource(R.drawable.favorite_red);
+            }else{
+                holder.imageButton.setBackgroundResource(R.drawable.favorite_gray);
+            }
 
         Glide.with(context)
 

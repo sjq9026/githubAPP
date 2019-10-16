@@ -3,6 +3,7 @@ package com.sjq.githubapp.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -14,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.activities.PopularDetailActivity;
 import com.sjq.githubapp.adapters.PopularAdapter;
@@ -49,6 +53,8 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
     public final static String FAVORITE = "Favorite";
     public final static String NET_WORK = "NET_WORK";
     private static final String TYPE = "type";
+    private SmartRefreshLayout refresh_layout;
+
     public LanguageContentFragment() {
         // Required empty public constructor
     }
@@ -99,6 +105,7 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
 
     @Override
     public void updateRecycleViewData(ArrayList<PopularItemEntity> list) {
+        refresh_layout.finishRefresh();
            mlist = list;
             if(madapter == null){
                 madapter = new PopularAdapter(getActivity(),this.mlist,this);
@@ -116,6 +123,7 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_language_content, container, false);
          recyclerView = view.findViewById(R.id.recycle_view);
+        refresh_layout = view.findViewById(R.id.refresh_layout);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(RecyclerView.VERTICAL);
         Log.i("AAAAAA","onCreateView()===>"+getArguments().getString(ARG_PARAM1));
@@ -125,14 +133,28 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
         //设置增加或删除条目的动画
         recyclerView.setItemAnimator( new DefaultItemAnimator());
 
+
         Log.i("AAAAAA","onCreate()===>");
         if (getArguments() != null) {
             if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
+                refresh_layout.autoRefresh();
                 mPresenter.getPopularItemList(getArguments().getString(ARG_PARAM1));
             }else{
                 mPresenter.getFavoritePopularItemList();
             }
         }
+        refresh_layout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                if (getArguments() != null) {
+                    if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
+                        mPresenter.getPopularItemList(getArguments().getString(ARG_PARAM1));
+                    }else{
+                        mPresenter.getFavoritePopularItemList();
+                    }
+                }
+            }
+        });
 
         return view;
     }
@@ -175,21 +197,18 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
 
 
     @Override
-    public void onItemFavoriteStatusChange(int position, boolean newFavoriteStatus) {
+    public void onItemFavoriteStatusChange(int position, boolean newFavoriteStatus, PopularItemEntity popularItemEntity) {
 
-           this.mlist.get(position).setFavorite(newFavoriteStatus);
-           madapter.notifyItemChanged(position);
-//           PopularStateEntity popularStateEntity = new PopularStateEntity();
-//           popularStateEntity.setFavorite(newFavoriteStatus);
-//           popularStateEntity.setPosition(position);
-//           EventBus.getDefault().post(popularStateEntity);
+
+
 
 
     }
 
-
-
-
+    @Override
+    public void refreshError() {
+        refresh_layout.finishRefresh(false);
+    }
 
 
     @Override
@@ -210,7 +229,6 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
     @Override
     public void onDestroy() {
         super.onDestroy();
-
         madapter = null;
         mlist = null;
     }
@@ -218,16 +236,40 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
     public void onFavoriteStateChange(PopularStateEntity entity){
         if(getArguments() != null){
             if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
-                this.mlist.get(entity.getPosition()).setFavorite(entity.isFavorite());
-                madapter.notifyItemChanged(entity.getPosition());
-            }else{
-                //当是收藏fragment的时候，如果从别的页面点击了添加，这里直接从新查找一边
-                if(entity.getIsFavorite()){
-                    mPresenter.getFavoritePopularItemList();
-                }else{
-                    this.mlist.remove(entity.getPosition());
+                if(this.mlist != null){
+                    int index = -1;
+                    for (int i=0;i<this.mlist.size();i++) {
+                        if(this.mlist.get(i).getId() == entity.getPopular_id()){
+                            this.mlist.get(i).setFavorite(entity.getIsFavorite());
+                           index = i;
+                            break;
+                        }
+                    }
+                    if(index > -1){
+                        madapter.notifyItemChanged(index);
+                    }
                 }
-                madapter.notifyDataSetChanged();
+            }else{
+                if(this.mlist != null){
+                    int index = -1;
+                    for (int i=0;i<this.mlist.size();i++) {
+                        if(this.mlist.get(i).getId() == entity.getPopular_id()){
+                            index = i;
+                            break;
+                        }
+                    }
+                    if(index > -1){
+                        madapter.notifyItemChanged(index);
+                    }
+                    //当是收藏fragment的时候，如果从别的页面点击了添加，这里直接从新查找一边
+                    if(entity.getIsFavorite()){
+                        mPresenter.getFavoritePopularItemList();
+                    }else{
+                        this.mlist.remove(index);
+                    }
+                    madapter.dataChange(this.mlist);
+                }
+
             }
         }
 
