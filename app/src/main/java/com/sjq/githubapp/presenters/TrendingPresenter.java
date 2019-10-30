@@ -12,13 +12,10 @@ import com.sjq.githubapp.MyApplication;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.adapters.MyFragmentPagerAdapter;
 import com.sjq.githubapp.base.BasePresenter;
-import com.sjq.githubapp.fragments.LanguageContentFragment;
 import com.sjq.githubapp.fragments.TrendingContentFragment;
-import com.sjq.githubapp.fragments.TrendingFragment;
-import com.sjq.githubapp.javabean.LanguageEntity;
-import com.sjq.githubapp.models.PopularModel;
-import com.sjq.githubapp.models.PopularModelImpl;
-import com.sjq.githubapp.views.PopularView;
+import com.sjq.githubapp.javabean.TrendingKeyEntity;
+import com.sjq.githubapp.models.TrendingModel;
+import com.sjq.githubapp.models.TrendingModelImpl;
 import com.sjq.githubapp.views.TrendingView;
 
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -41,22 +38,23 @@ import androidx.fragment.app.FragmentManager;
 public class TrendingPresenter implements BasePresenter {
 
 
-    PopularModel model;
-    private PopularView mView;
+    TrendingModel model;
+    private TrendingView mView;
 
-    public TrendingPresenter(PopularView view) {
+
+    public TrendingPresenter(TrendingView view) {
         mView = view;
-        model = new PopularModelImpl();
+        model = new TrendingModelImpl();
     }
 
     public void initlangrage() {
-        ArrayList<LanguageEntity> mLanguages = model.getLanguage();
+        ArrayList<TrendingKeyEntity> mLanguages = model.getLanguage();
         //如果数据库中没有数据，那么从本地文件中解析
         if (mLanguages == null || mLanguages.size() == 0) {
             InputStreamReader inputStreamReader;
             mLanguages = new ArrayList<>();
             try {
-                inputStreamReader = new InputStreamReader(mView.getContext().getAssets().open("LanguageJsonStr.json"), "UTF-8");
+                inputStreamReader = new InputStreamReader(mView.getContext().getAssets().open("keys.json"), "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(
                         inputStreamReader);
                 String line;
@@ -71,9 +69,9 @@ public class TrendingPresenter implements BasePresenter {
                 JsonArray jsonArray = parser.parse(resultString).getAsJsonArray();
                 Gson gson = new Gson();
                 for (JsonElement obj : jsonArray) {
-                    LanguageEntity language = gson.fromJson(obj, LanguageEntity.class);
+                    TrendingKeyEntity language = gson.fromJson(obj, TrendingKeyEntity.class);
                     mLanguages.add(language);
-                    MyApplication.getmDaoSession().getLanguageEntityDao().insertOrReplace(language);
+                    MyApplication.getmDaoSession().getTrendingKeyEntityDao().insertOrReplace(language);
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -86,7 +84,7 @@ public class TrendingPresenter implements BasePresenter {
     }
 
 
-    public MyFragmentPagerAdapter getFragmentPagerAdapter(ArrayList<LanguageEntity> languageEntities, FragmentManager manager) {
+    public MyFragmentPagerAdapter getFragmentPagerAdapter(ArrayList<TrendingKeyEntity> languageEntities, FragmentManager manager) {
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (int i = 0; i < languageEntities.size(); i++) {
             fragments.add(TrendingContentFragment.newInstance(languageEntities.get(i).getName(),TrendingContentFragment.NET_WORK));
@@ -96,7 +94,7 @@ public class TrendingPresenter implements BasePresenter {
 
     }
 
-    public CommonNavigator initCommonNavigator(final ArrayList<LanguageEntity> mTitleDataList) {
+    public CommonNavigator initCommonNavigator(final ArrayList<TrendingKeyEntity> mTitleDataList) {
         CommonNavigator commonNavigator = new CommonNavigator(mView.getContext());
         commonNavigator.setEnablePivotScroll(true);
 

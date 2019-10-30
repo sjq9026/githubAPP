@@ -22,17 +22,29 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         DemoEntityDao.createTable(db, ifNotExists);
-        LanguageEntityDao.createTable(db, ifNotExists);
-        PopularFavoriteEntityDao.createTable(db, ifNotExists);
-        TrendingFavoriteEntityDao.createTable(db, ifNotExists);
+        UserEntityDao.createTable(db, ifNotExists);
+        PopularKeyEntityDao.createTable(db, ifNotExists);
+        TrendingKeyEntityDao.createTable(db, ifNotExists);
+        UserContactPopularKeyEntityDao.createTable(db, ifNotExists);
+        UserContactTrendingKeyEntityDao.createTable(db, ifNotExists);
+        UserContactPopularEntityDao.createTable(db, ifNotExists);
+        UserContactTrendingEntityDao.createTable(db, ifNotExists);
+        PopularEntityDao.createTable(db, ifNotExists);
+        TrendingEntityDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         DemoEntityDao.dropTable(db, ifExists);
-        LanguageEntityDao.dropTable(db, ifExists);
-        PopularFavoriteEntityDao.dropTable(db, ifExists);
-        TrendingFavoriteEntityDao.dropTable(db, ifExists);
+        UserEntityDao.dropTable(db, ifExists);
+        PopularKeyEntityDao.dropTable(db, ifExists);
+        TrendingKeyEntityDao.dropTable(db, ifExists);
+        UserContactPopularKeyEntityDao.dropTable(db, ifExists);
+        UserContactTrendingKeyEntityDao.dropTable(db, ifExists);
+        UserContactPopularEntityDao.dropTable(db, ifExists);
+        UserContactTrendingEntityDao.dropTable(db, ifExists);
+        PopularEntityDao.dropTable(db, ifExists);
+        TrendingEntityDao.dropTable(db, ifExists);
     }
 
     /**
@@ -52,9 +64,15 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(DemoEntityDao.class);
-        registerDaoClass(LanguageEntityDao.class);
-        registerDaoClass(PopularFavoriteEntityDao.class);
-        registerDaoClass(TrendingFavoriteEntityDao.class);
+        registerDaoClass(UserEntityDao.class);
+        registerDaoClass(PopularKeyEntityDao.class);
+        registerDaoClass(TrendingKeyEntityDao.class);
+        registerDaoClass(UserContactPopularKeyEntityDao.class);
+        registerDaoClass(UserContactTrendingKeyEntityDao.class);
+        registerDaoClass(UserContactPopularEntityDao.class);
+        registerDaoClass(UserContactTrendingEntityDao.class);
+        registerDaoClass(PopularEntityDao.class);
+        registerDaoClass(TrendingEntityDao.class);
     }
 
     public DaoSession newSession() {

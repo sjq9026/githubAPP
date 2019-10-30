@@ -1,20 +1,13 @@
 package com.sjq.githubapp.network;
 
 
-import com.sjq.githubapp.javabean.Demo2Entity;
-import com.sjq.githubapp.javabean.LanguageEntity;
-import com.sjq.githubapp.javabean.PopularItemEntity;
 import com.sjq.githubapp.javabean.PopularResponse;
 import com.sjq.githubapp.javabean.TrendingResponse;
 import com.sjq.githubapp.javabean.WanAndroidResponse;
 
-import java.util.List;
-
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 

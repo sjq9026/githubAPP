@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.sjq.githubapp.R;
+import com.sjq.githubapp.activities.CustomActivity;
+import com.sjq.githubapp.activities.SortActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.presenters.MinePresenter;
 import com.sjq.githubapp.views.MineView;
@@ -23,7 +26,7 @@ import com.sjq.githubapp.views.MineView;
  * Use the {@link MineFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MineFragment extends BaseFragment<MineView, MinePresenter> {
+public class MineFragment extends BaseFragment<MineView, MinePresenter> implements MineView, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,6 +37,13 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> {
 
 
     private OnFragmentInteractionListener mListener;
+
+    private RelativeLayout home_layout;
+    private RelativeLayout custom_language_layout;
+    private RelativeLayout key_layout;
+    private RelativeLayout sort_key_layout;
+    private RelativeLayout sort_language_layout;
+
 
     public MineFragment() {
         // Required empty public constructor
@@ -69,8 +79,18 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mine, container, false);
+        View view = inflater.inflate(R.layout.fragment_mine, container, false);
+        home_layout = view.findViewById(R.id.home_layout);
+        custom_language_layout = view.findViewById(R.id.custom_language_layout);
+        key_layout = view.findViewById(R.id.key_layout);
+        sort_key_layout = view.findViewById(R.id.sort_key_layout);
+        sort_language_layout = view.findViewById(R.id.sort_language_layout);
+        home_layout.setOnClickListener(this);
+        custom_language_layout.setOnClickListener(this);
+        key_layout.setOnClickListener(this);
+        sort_key_layout.setOnClickListener(this);
+        sort_language_layout.setOnClickListener(this);
+        return view;
     }
 
     @Override
@@ -103,5 +123,23 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> {
     }
 
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.home_layout:
+                break;
+            case R.id.custom_language_layout:
+                CustomActivity.startCustomActivity(getActivity(),CustomActivity.LANGUAGE_FLAG);
+                break;
+            case R.id.sort_key_layout:
 
+                break;
+            case R.id.sort_language_layout:
+                SortActivity.startCustomActivity(getActivity(),SortActivity.LANGUAGE_FLAG);
+
+                break;
+            case R.id.key_layout:
+                break;
+        }
+    }
 }

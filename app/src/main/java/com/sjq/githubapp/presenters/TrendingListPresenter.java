@@ -3,19 +3,12 @@ package com.sjq.githubapp.presenters;
 import android.util.Log;
 
 import com.sjq.githubapp.base.BasePresenter;
-import com.sjq.githubapp.javabean.PopularFavoriteEntity;
-import com.sjq.githubapp.javabean.PopularItemEntity;
-import com.sjq.githubapp.javabean.PopularResponse;
-import com.sjq.githubapp.javabean.TrendingFavoriteEntity;
+import com.sjq.githubapp.javabean.TrendingEntity;
 import com.sjq.githubapp.javabean.TrendingItemEntity;
 import com.sjq.githubapp.javabean.TrendingResponse;
 import com.sjq.githubapp.javabean.TrendingStateEntity;
-import com.sjq.githubapp.models.LanguageContentModelImpl;
 import com.sjq.githubapp.models.TrendingContentModelImpl;
-import com.sjq.githubapp.views.LanguageContentView;
-import com.sjq.githubapp.views.PopularView;
 import com.sjq.githubapp.views.TrendingContentView;
-import com.sjq.githubapp.views.TrendingView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -47,9 +40,9 @@ public class TrendingListPresenter implements BasePresenter {
                     @Override
                     public void accept(TrendingResponse listResponse)  {
                         Log.i("AAAAAA",listResponse.getTrendingItemEntities().toString());
-                        ArrayList<TrendingFavoriteEntity> list = model.getFavoriteTrending();
+                        ArrayList<TrendingEntity> list = model.getFavoriteTrending();
                         for (TrendingItemEntity itemEntity : listResponse.getTrendingItemEntities()) {
-                            for (TrendingFavoriteEntity favoriteEntity : list) {
+                            for (TrendingEntity favoriteEntity : list) {
                                 if(itemEntity.getRepo().equals(favoriteEntity.getRepo())){
                                     itemEntity.setFavorite(true);
                                 }
@@ -70,9 +63,9 @@ public class TrendingListPresenter implements BasePresenter {
 
     }
     public  void  getFavoriteTrendingItemList(){
-        ArrayList<TrendingFavoriteEntity> list = model.getFavoriteTrending();
+        ArrayList<TrendingEntity> list = model.getFavoriteTrending();
         ArrayList<TrendingItemEntity> result_list = new ArrayList<>();
-        for (TrendingFavoriteEntity trendingFavoriteEntity : list) {
+        for (TrendingEntity trendingFavoriteEntity : list) {
             TrendingItemEntity itemEntity = new TrendingItemEntity();
 
             itemEntity.setDesc(trendingFavoriteEntity.getDesc());
@@ -94,7 +87,7 @@ public class TrendingListPresenter implements BasePresenter {
 
 
     public void onFavoriteClick(int position, TrendingItemEntity trendingItemEntity) {
-        TrendingFavoriteEntity favoriteEntity = new TrendingFavoriteEntity();
+        TrendingEntity favoriteEntity = new TrendingEntity();
         favoriteEntity.setAdded_stars(trendingItemEntity.getAdded_stars());
         if(trendingItemEntity.getAvatars()!=null && trendingItemEntity.getAvatars().size() > 0){
             favoriteEntity.setAvatarImg(trendingItemEntity.getAvatars().get(0));

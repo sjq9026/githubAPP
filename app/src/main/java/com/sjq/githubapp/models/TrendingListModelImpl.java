@@ -1,8 +1,8 @@
 package com.sjq.githubapp.models;
 
 import com.sjq.githubapp.MyApplication;
-import com.sjq.githubapp.db.greendao.PopularFavoriteEntityDao;
-import com.sjq.githubapp.javabean.PopularFavoriteEntity;
+import com.sjq.githubapp.db.greendao.PopularEntityDao;
+import com.sjq.githubapp.javabean.PopularEntity;
 import com.sjq.githubapp.javabean.PopularResponse;
 import com.sjq.githubapp.javabean.WanAndroidResponse;
 import com.sjq.githubapp.network.NetWorkManager;
@@ -27,23 +27,23 @@ public class TrendingListModelImpl implements LanguageContentModel {
     }
 
     @Override
-    public void addFavoritePopularData(PopularFavoriteEntity favoriteEntity) {
-        MyApplication.getmDaoSession().getPopularFavoriteEntityDao().insertOrReplace(favoriteEntity);
+    public void addFavoritePopularData(PopularEntity favoriteEntity) {
+        MyApplication.getmDaoSession().getPopularEntityDao().insertOrReplace(favoriteEntity);
     }
 
     @Override
-    public void removeFavoritePopularData(PopularFavoriteEntity favoriteEntity) {
+    public void removeFavoritePopularData(PopularEntity favoriteEntity) {
        // MyApplication.getmDaoSession().getPopularFavoriteEntityDao().hasKey(favoriteEntity);
-        PopularFavoriteEntity entity = MyApplication.getmDaoSession().getPopularFavoriteEntityDao().queryBuilder().where(PopularFavoriteEntityDao.Properties.PopularId.eq(favoriteEntity.getPopularId())).unique();
+        PopularEntity entity = MyApplication.getmDaoSession().getPopularEntityDao().queryBuilder().where(PopularEntityDao.Properties.PopularId.eq(favoriteEntity.getPopularId())).unique();
 
-        MyApplication.getmDaoSession().getPopularFavoriteEntityDao().delete(entity);
+        MyApplication.getmDaoSession().getPopularEntityDao().delete(entity);
        // MyApplication.getmDaoSession().getPopularFavoriteEntityDao().insertOrReplace(favoriteEntity);
 
     }
 
     @Override
-    public ArrayList<PopularFavoriteEntity> getFavoritePopular() {
-        return  (ArrayList<PopularFavoriteEntity>)MyApplication.getmDaoSession().getPopularFavoriteEntityDao().loadAll();
+    public ArrayList<PopularEntity> getFavoritePopular() {
+        return  (ArrayList<PopularEntity>)MyApplication.getmDaoSession().getPopularEntityDao().loadAll();
     }
 
 

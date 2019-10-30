@@ -1,13 +1,14 @@
 package com.sjq.githubapp.javabean;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.io.Serializable;
-import org.greenrobot.greendao.annotation.Generated;
+
 @Entity
-public class PopularFavoriteEntity implements Serializable {
-    private static final long serialVersionUID = 5268710012L;
+public class PopularEntity implements Serializable {
+    private static final long serialVersionUID = 5262312318710012L;
     @Id(autoincrement = true)//设置自增长
     private Long autoId;
     private int popularId;
@@ -16,8 +17,8 @@ public class PopularFavoriteEntity implements Serializable {
    private String avatar_url;//头像地址
    private int stargazers_count;//start数
     private String html_url;//网址
-    @Generated(hash = 961595420)
-    public PopularFavoriteEntity(Long autoId, int popularId, String full_name,
+    @Generated(hash = 745906352)
+    public PopularEntity(Long autoId, int popularId, String full_name,
             String description, String avatar_url, int stargazers_count,
             String html_url) {
         this.autoId = autoId;
@@ -28,8 +29,8 @@ public class PopularFavoriteEntity implements Serializable {
         this.stargazers_count = stargazers_count;
         this.html_url = html_url;
     }
-    @Generated(hash = 2005225296)
-    public PopularFavoriteEntity() {
+    @Generated(hash = 1929115736)
+    public PopularEntity() {
     }
     public Long getAutoId() {
         return this.autoId;
@@ -73,4 +74,5 @@ public class PopularFavoriteEntity implements Serializable {
     public void setHtml_url(String html_url) {
         this.html_url = html_url;
     }
+
 }

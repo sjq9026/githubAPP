@@ -16,15 +16,13 @@ import com.sjq.githubapp.fragments.FavoriteFragment;
 import com.sjq.githubapp.fragments.MineFragment;
 import com.sjq.githubapp.fragments.PopularFragment;
 import com.sjq.githubapp.fragments.TrendingFragment;
-import com.sjq.githubapp.javabean.LanguageEntity;
+import com.sjq.githubapp.javabean.PopularKeyEntity;
 import com.sjq.githubapp.presenters.MainPresenter;
 import com.sjq.githubapp.views.MainView;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> implements MainView, BottomNavigationView.OnNavigationItemSelectedListener, BaseFragment.OnFragmentInteractionListener {
@@ -134,7 +132,7 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter> imple
     }
 
     @Override
-    public void refreshLanguage(ArrayList<LanguageEntity> arrayList) {
+    public void refreshLanguage(ArrayList<PopularKeyEntity> arrayList) {
         Log.i("TAGTAG",arrayList.toString());
 
 

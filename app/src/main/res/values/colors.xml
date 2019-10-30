@@ -2,7 +2,7 @@
 <resources>
     <color name="color_theme">#03A9F4</color>
     <color name="colorPrimaryDark">
-        #00574B
+        #03A9F4
     </color>
     <color name="colorAccent">
         #D81B60
@@ -11,4 +11,5 @@
     <color name="gray">
         #f0f0f0
     </color>
+    <color name="black">#000000</color>
 </resources>

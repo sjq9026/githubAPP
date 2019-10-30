@@ -1,17 +1,14 @@
 package com.sjq.githubapp.presenters;
 
-import android.os.Handler;
-
 import com.sjq.githubapp.base.BasePresenter;
 
-import com.sjq.githubapp.javabean.PopularFavoriteEntity;
+import com.sjq.githubapp.javabean.PopularEntity;
 import com.sjq.githubapp.javabean.PopularItemEntity;
-import com.sjq.githubapp.javabean.TrendingFavoriteEntity;
+import com.sjq.githubapp.javabean.TrendingEntity;
 import com.sjq.githubapp.javabean.TrendingItemEntity;
 import com.sjq.githubapp.models.LanguageContentModelImpl;
 import com.sjq.githubapp.models.TrendingContentModelImpl;
 import com.sjq.githubapp.views.PopularDetailView;
-import com.sjq.githubapp.views.PopularView;
 
 
 public class PopularDetailPresenter implements BasePresenter {
@@ -24,7 +21,7 @@ public class PopularDetailPresenter implements BasePresenter {
         mTrendingModel = new TrendingContentModelImpl();
     }
     public void onFavoriteClick(int position, PopularItemEntity popularItemEntity) {
-        PopularFavoriteEntity favoriteEntity = new PopularFavoriteEntity();
+        PopularEntity favoriteEntity = new PopularEntity();
         favoriteEntity.setAvatar_url(popularItemEntity.getOwner().getAvatar_url());
         favoriteEntity.setDescription(popularItemEntity.getDescription());
         favoriteEntity.setPopularId(popularItemEntity.getId());
@@ -40,7 +37,7 @@ public class PopularDetailPresenter implements BasePresenter {
     }
 
     public void onFavoriteClick(int position, TrendingItemEntity trendingItemEntity) {
-        TrendingFavoriteEntity favoriteEntity = new TrendingFavoriteEntity();
+        TrendingEntity favoriteEntity = new TrendingEntity();
         favoriteEntity.setAdded_stars(trendingItemEntity.getAdded_stars());
         if(trendingItemEntity.getAvatars()!=null && trendingItemEntity.getAvatars().size() > 0){
             favoriteEntity.setAvatarImg(trendingItemEntity.getAvatars().get(0));

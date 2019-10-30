@@ -21,7 +21,7 @@ import android.widget.ImageView;
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseFragment;
-import com.sjq.githubapp.javabean.LanguageEntity;
+import com.sjq.githubapp.javabean.PopularKeyEntity;
 import com.sjq.githubapp.presenters.PopularPresenter;
 import com.sjq.githubapp.views.PopularView;
 
@@ -117,7 +117,7 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
     }
 
     @Override
-    public void refreshLanguage(final ArrayList<LanguageEntity> languageEntities) {
+    public void refreshLanguage(final ArrayList<PopularKeyEntity> languageEntities) {
         Log.i("init", languageEntities.toString());
         if (magicIndicator == null) {
             magicIndicator = contentView.findViewById(R.id.magic_indicator);

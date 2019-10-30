@@ -5,4 +5,11 @@
 
     </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="android:button">@drawable/check_box</item>
+
+
+    </style>
+
+
 </resources>

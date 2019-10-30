@@ -8,8 +8,8 @@ import java.io.Serializable;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
-public class LanguageEntity implements Serializable {
-    private static final long serialVersionUID = 5368710012L;
+public class PopularKeyEntity implements Serializable {
+    private static final long serialVersionUID = 5368710012122L;
 
     /**
      * path : crystal
@@ -22,15 +22,16 @@ public class LanguageEntity implements Serializable {
     private String path;
     private String name;
     private boolean checked;
-    @Generated(hash = 1491413916)
-    public LanguageEntity(Long autoId, String path, String name, boolean checked) {
+    @Generated(hash = 1287181527)
+    public PopularKeyEntity(Long autoId, String path, String name,
+            boolean checked) {
         this.autoId = autoId;
         this.path = path;
         this.name = name;
         this.checked = checked;
     }
-    @Generated(hash = 1756281788)
-    public LanguageEntity() {
+    @Generated(hash = 1655116064)
+    public PopularKeyEntity() {
     }
     public Long getAutoId() {
         return this.autoId;
@@ -58,13 +59,5 @@ public class LanguageEntity implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "LanguageEntity{" +
-                "autoId=" + autoId +
-                ", path='" + path + '\'' +
-                ", name='" + name + '\'' +
-                ", checked=" + checked +
-                '}';
-    }
+
 }

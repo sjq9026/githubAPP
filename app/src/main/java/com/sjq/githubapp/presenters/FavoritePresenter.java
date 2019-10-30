@@ -2,29 +2,22 @@ package com.sjq.githubapp.presenters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
-import com.sjq.githubapp.R;
 import com.sjq.githubapp.adapters.MyFragmentPagerAdapter;
 import com.sjq.githubapp.base.BasePresenter;
 import com.sjq.githubapp.customviews.ScaleTransitionPagerTitleView;
 import com.sjq.githubapp.fragments.LanguageContentFragment;
 import com.sjq.githubapp.fragments.TrendingContentFragment;
-import com.sjq.githubapp.javabean.LanguageEntity;
 import com.sjq.githubapp.views.FavoriteView;
-import com.sjq.githubapp.views.TrendingView;
 
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;

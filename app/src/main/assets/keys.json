@@ -1,38 +1,78 @@
 [
+
   {
-    "path": "stars:>1",
-    "name": "ALL",
-    "short_name": "ALL",
+
+    "path": "cpp",
+    "name": "C++",
     "checked": true
   },
   {
-    "path": "iOS",
-    "name": "iOS",
+
+    "path": "css",
+    "name": "CSS",
     "checked": true
   },
   {
-    "path": "react-native",
-    "name": "React Native",
+
+    "path": "dart",
+    "name": "Dart",
     "checked": true
   },
   {
-    "path": "MySQL",
-    "name": "MySQL",
+
+    "path": "go",
+    "name": "Go",
+    "checked": true
+  },
+  {
+
+    "path": "html",
+    "name": "HTML",
+    "checked": true
+  },
+  {
+
+    "path": "java",
+    "name": "Java",
     "checked": false
   },
   {
-    "path": " AngularJS",
-    "name": " AngularJS",
+
+    "path": "javascript",
+
+    "name": "JavaScript",
     "checked": false
   },
   {
-    "path": " jQuery",
-    "name": " jQuery",
+
+    "path": "kotlin",
+    "name": "Kotlin",
     "checked": false
   },
   {
-    "path": " react",
-    "name": " React",
-    "checked": true
+
+
+  "path": "objective-c",
+  "name": "Objective-C",
+  "checked": false
+  },
+  {
+
+    "path": "php",
+    "name": "PHP",
+    "checked": false
+  },
+  {
+
+    "path": "python",
+    "name": "Python",
+    "checked": false
+  },
+  {
+
+    "path": "typescript",
+    "name": "TypeScript",
+    "checked": false
   }
+
 ]

@@ -14,8 +14,7 @@ import android.widget.TextView;
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseFragment;
-import com.sjq.githubapp.javabean.LanguageEntity;
-import com.sjq.githubapp.presenters.PopularPresenter;
+import com.sjq.githubapp.javabean.TrendingKeyEntity;
 import com.sjq.githubapp.presenters.TrendingPresenter;
 import com.sjq.githubapp.views.PopularView;
 import com.sjq.githubapp.views.TrendingView;
@@ -26,13 +25,13 @@ import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import java.util.ArrayList;
 
 
-public class TrendingFragment extends BaseFragment<PopularView, TrendingPresenter> implements PopularView {
+public class TrendingFragment extends BaseFragment<PopularView, TrendingPresenter> implements TrendingView {
 
     private static final String ARG_PARAM1 = "param1";
 
     private View contentView;
     private ViewPager viewPager;
-    private ArrayList<LanguageEntity> mLanguages;
+    private ArrayList<TrendingKeyEntity> mLanguages;
     private TextView title_tv;
 
 
@@ -67,15 +66,15 @@ public class TrendingFragment extends BaseFragment<PopularView, TrendingPresente
     }
 
     @Override
-    public void refreshLanguage(ArrayList<LanguageEntity> languageEntities) {
-        this.mLanguages = languageEntities;
-        Log.i("init", languageEntities.toString());
+    public void refreshLanguage(ArrayList<TrendingKeyEntity> keyEntities) {
+        this.mLanguages = keyEntities;
+        Log.i("init", keyEntities.toString());
         if (magicIndicator == null) {
             magicIndicator = contentView.findViewById(R.id.magic_indicator);
         }
         title_tv.setText(mLanguages.get(0).getName()+"优质项目推荐");
-        magicIndicator.setNavigator(mPresenter.initCommonNavigator(languageEntities));
-        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(languageEntities, getChildFragmentManager()));
+        magicIndicator.setNavigator(mPresenter.initCommonNavigator(keyEntities));
+        viewPager.setAdapter(mPresenter.getFragmentPagerAdapter(keyEntities, getChildFragmentManager()));
         ViewPagerHelper.bind(magicIndicator, viewPager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

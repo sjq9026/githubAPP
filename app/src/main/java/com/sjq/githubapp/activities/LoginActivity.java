@@ -1,5 +1,6 @@
 package com.sjq.githubapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseMvpActivity;
 import com.sjq.githubapp.presenters.LoginPresenter;
@@ -32,7 +34,7 @@ public class LoginActivity extends BaseMvpActivity<LoginView, LoginPresenter> im
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-initView();
+        initView();
     }
 
     @Override
@@ -43,7 +45,6 @@ initView();
 
 
     public void initView() {
-
         mLoadingView = new LoadingDialog(this);
         mLoadingView.setLoadingText("加载中")
                 .setSuccessText("加载成功")//显示加载成功时的文字
@@ -56,8 +57,6 @@ initView();
         psdEt = (EditText) findViewById(R.id.psd_et);
         loginBtn = (Button) findViewById(R.id.login_btn);
         loginBtn.setOnClickListener(this);
-
-
         wrap = (ConstraintLayout) findViewById(R.id.wrap);
 //        Blurry.with(this).radius(25).sampling(2).onto(wrap);
         Blurry.with(this)
@@ -80,6 +79,7 @@ initView();
 
     }
 
+
     @Override
     public void loginSuccess() {
         mLoadingView.close();
@@ -90,6 +90,12 @@ initView();
 
     @Override
     public void loginFailed(String errMsg) {
+        Snackbar.make(wrap,errMsg,1500).show();
         mLoadingView.close();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }

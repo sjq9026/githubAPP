@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.sjq.githubapp.base.BasePresenter;
 import com.sjq.githubapp.javabean.OwnerEntity;
-import com.sjq.githubapp.javabean.PopularFavoriteEntity;
+import com.sjq.githubapp.javabean.PopularEntity;
 import com.sjq.githubapp.javabean.PopularItemEntity;
 import com.sjq.githubapp.javabean.PopularResponse;
 
@@ -62,9 +62,9 @@ public class LanguageContentPresenter implements BasePresenter {
                     @Override
                     public void accept(PopularResponse listResponse)  {
                         Log.i("AAAAAA","getPopularItemList()");
-                      ArrayList<PopularFavoriteEntity> list = model.getFavoritePopular();
+                      ArrayList<PopularEntity> list = model.getFavoritePopular();
                         for (PopularItemEntity itemEntity : listResponse.getItemEntities()) {
-                            for (PopularFavoriteEntity favoriteEntity : list) {
+                            for (PopularEntity favoriteEntity : list) {
                                 if(itemEntity.getId() == favoriteEntity.getPopularId()){
                                     itemEntity.setFavorite(true);
                                 }
@@ -86,9 +86,9 @@ public class LanguageContentPresenter implements BasePresenter {
 
     public  void getFavoritePopularItemList(){
 
-        ArrayList<PopularFavoriteEntity> list = model.getFavoritePopular();
+        ArrayList<PopularEntity> list = model.getFavoritePopular();
         ArrayList<PopularItemEntity> result_list = new ArrayList<>();
-        for (PopularFavoriteEntity favoriteEntity : list) {
+        for (PopularEntity favoriteEntity : list) {
             PopularItemEntity itemEntity = new PopularItemEntity();
             itemEntity.setId(favoriteEntity.getPopularId());
             OwnerEntity ownerEntity = new OwnerEntity();
@@ -110,7 +110,7 @@ public class LanguageContentPresenter implements BasePresenter {
 
 
     public void onFavoriteClick(int position, PopularItemEntity popularItemEntity) {
-        PopularFavoriteEntity favoriteEntity = new PopularFavoriteEntity();
+        PopularEntity favoriteEntity = new PopularEntity();
         favoriteEntity.setAvatar_url(popularItemEntity.getOwner().getAvatar_url());
         favoriteEntity.setDescription(popularItemEntity.getDescription());
         favoriteEntity.setPopularId(popularItemEntity.getId());
