@@ -22,29 +22,29 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         DemoEntityDao.createTable(db, ifNotExists);
-        UserEntityDao.createTable(db, ifNotExists);
-        PopularKeyEntityDao.createTable(db, ifNotExists);
-        TrendingKeyEntityDao.createTable(db, ifNotExists);
-        UserContactPopularKeyEntityDao.createTable(db, ifNotExists);
-        UserContactTrendingKeyEntityDao.createTable(db, ifNotExists);
-        UserContactPopularEntityDao.createTable(db, ifNotExists);
-        UserContactTrendingEntityDao.createTable(db, ifNotExists);
         PopularEntityDao.createTable(db, ifNotExists);
+        PopularKeyEntityDao.createTable(db, ifNotExists);
         TrendingEntityDao.createTable(db, ifNotExists);
+        TrendingKeyEntityDao.createTable(db, ifNotExists);
+        UserContactPopularEntityDao.createTable(db, ifNotExists);
+        UserContactPopularKeyEntityDao.createTable(db, ifNotExists);
+        UserContactTrendingEntityDao.createTable(db, ifNotExists);
+        UserContactTrendingKeyEntityDao.createTable(db, ifNotExists);
+        UserEntityDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         DemoEntityDao.dropTable(db, ifExists);
-        UserEntityDao.dropTable(db, ifExists);
-        PopularKeyEntityDao.dropTable(db, ifExists);
-        TrendingKeyEntityDao.dropTable(db, ifExists);
-        UserContactPopularKeyEntityDao.dropTable(db, ifExists);
-        UserContactTrendingKeyEntityDao.dropTable(db, ifExists);
-        UserContactPopularEntityDao.dropTable(db, ifExists);
-        UserContactTrendingEntityDao.dropTable(db, ifExists);
         PopularEntityDao.dropTable(db, ifExists);
+        PopularKeyEntityDao.dropTable(db, ifExists);
         TrendingEntityDao.dropTable(db, ifExists);
+        TrendingKeyEntityDao.dropTable(db, ifExists);
+        UserContactPopularEntityDao.dropTable(db, ifExists);
+        UserContactPopularKeyEntityDao.dropTable(db, ifExists);
+        UserContactTrendingEntityDao.dropTable(db, ifExists);
+        UserContactTrendingKeyEntityDao.dropTable(db, ifExists);
+        UserEntityDao.dropTable(db, ifExists);
     }
 
     /**
@@ -64,15 +64,15 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(DemoEntityDao.class);
-        registerDaoClass(UserEntityDao.class);
-        registerDaoClass(PopularKeyEntityDao.class);
-        registerDaoClass(TrendingKeyEntityDao.class);
-        registerDaoClass(UserContactPopularKeyEntityDao.class);
-        registerDaoClass(UserContactTrendingKeyEntityDao.class);
-        registerDaoClass(UserContactPopularEntityDao.class);
-        registerDaoClass(UserContactTrendingEntityDao.class);
         registerDaoClass(PopularEntityDao.class);
+        registerDaoClass(PopularKeyEntityDao.class);
         registerDaoClass(TrendingEntityDao.class);
+        registerDaoClass(TrendingKeyEntityDao.class);
+        registerDaoClass(UserContactPopularEntityDao.class);
+        registerDaoClass(UserContactPopularKeyEntityDao.class);
+        registerDaoClass(UserContactTrendingEntityDao.class);
+        registerDaoClass(UserContactTrendingKeyEntityDao.class);
+        registerDaoClass(UserEntityDao.class);
     }
 
     public DaoSession newSession() {

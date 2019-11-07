@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
-
 import com.sjq.githubapp.BuildConfig;
 
 import java.io.File;
@@ -18,8 +17,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 文件相关工具类
