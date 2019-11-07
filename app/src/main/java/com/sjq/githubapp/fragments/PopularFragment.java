@@ -91,15 +91,12 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         contentView = inflater.inflate(R.layout.fragment_popular, container, false);
         initView();
         mPresenter.initlangrage();

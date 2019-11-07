@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.activities.CustomActivity;
 import com.sjq.githubapp.activities.SortActivity;
+import com.sjq.githubapp.activities.UserMainActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.presenters.MinePresenter;
 import com.sjq.githubapp.views.MineView;
@@ -127,6 +128,7 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.home_layout:
+                UserMainActivity.startCustomActivity(getActivity());
                 break;
             case R.id.custom_language_layout:
                 CustomActivity.startCustomActivity(getActivity(),CustomActivity.LANGUAGE_FLAG);

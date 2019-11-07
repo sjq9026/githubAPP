@@ -24,7 +24,8 @@
         android:roundIcon="@drawable/github"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SortActivity"></activity>
+        <activity android:name=".activities.UserMainActivity"></activity>
+        <activity android:name=".activities.SortActivity" />
         <activity android:name=".activities.CustomActivity" />
         <activity android:name=".activities.PopularDetailActivity" />
         <activity android:name=".activities.MainActivity" />
