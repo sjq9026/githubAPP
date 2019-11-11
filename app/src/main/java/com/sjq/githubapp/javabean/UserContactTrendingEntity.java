@@ -1,10 +1,10 @@
 package com.sjq.githubapp.javabean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.io.Serializable;
+import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class UserContactTrendingEntity implements Serializable {
@@ -12,10 +12,10 @@ public class UserContactTrendingEntity implements Serializable {
     @Id(autoincrement = true)//设置自增长
     private Long autoId;
     private String user_name;
-    private int trending_repo;
-    @Generated(hash = 209277823)
+    private String trending_repo;
+    @Generated(hash = 663356308)
     public UserContactTrendingEntity(Long autoId, String user_name,
-            int trending_repo) {
+            String trending_repo) {
         this.autoId = autoId;
         this.user_name = user_name;
         this.trending_repo = trending_repo;
@@ -35,11 +35,12 @@ public class UserContactTrendingEntity implements Serializable {
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
-    public int getTrending_repo() {
+    public String getTrending_repo() {
         return this.trending_repo;
     }
-    public void setTrending_repo(int trending_repo) {
+    public void setTrending_repo(String trending_repo) {
         this.trending_repo = trending_repo;
     }
+   
 
 }

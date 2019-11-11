@@ -3,21 +3,11 @@ package com.sjq.githubapp.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-
-
-
-import androidx.fragment.app.Fragment;
-
-
-import androidx.viewpager.widget.ViewPager;
-
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.base.BaseFragment;
@@ -28,8 +18,10 @@ import com.sjq.githubapp.views.PopularView;
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 
-
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,7 +91,7 @@ public class PopularFragment extends BaseFragment<PopularView, PopularPresenter>
         // Inflate the layout for this fragment
         contentView = inflater.inflate(R.layout.fragment_popular, container, false);
         initView();
-        mPresenter.initlangrage();
+        mPresenter.initLanguage();
         return contentView;
     }
 

@@ -1,78 +1,74 @@
 [
-
   {
-
+    "id": 1,
     "path": "cpp",
     "name": "C++",
     "checked": true
   },
   {
-
+    "id": 2,
     "path": "css",
     "name": "CSS",
     "checked": true
   },
   {
-
+    "id": 3,
     "path": "dart",
     "name": "Dart",
     "checked": true
   },
   {
-
+    "id": 4,
     "path": "go",
     "name": "Go",
     "checked": true
   },
   {
-
+    "id": 5,
     "path": "html",
     "name": "HTML",
     "checked": true
   },
   {
-
+    "id": 6,
     "path": "java",
     "name": "Java",
     "checked": false
   },
   {
-
+    "id": 7,
     "path": "javascript",
-
     "name": "JavaScript",
     "checked": false
   },
   {
-
+    "id": 8,
     "path": "kotlin",
     "name": "Kotlin",
     "checked": false
   },
   {
-
-
-  "path": "objective-c",
-  "name": "Objective-C",
-  "checked": false
+    "id": 9,
+    "path": "objective-c",
+    "name": "Objective-C",
+    "checked": false
   },
   {
-
+    "id": 10,
     "path": "php",
     "name": "PHP",
     "checked": false
   },
   {
-
+    "id": 11,
     "path": "python",
     "name": "Python",
     "checked": false
   },
   {
-
+    "id": 12,
     "path": "typescript",
     "name": "TypeScript",
     "checked": false
   }
-
 ]

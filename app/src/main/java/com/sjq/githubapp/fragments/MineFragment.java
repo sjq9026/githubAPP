@@ -3,9 +3,6 @@ package com.sjq.githubapp.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +10,15 @@ import android.widget.RelativeLayout;
 
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.activities.CustomActivity;
+import com.sjq.githubapp.activities.CustomTrendingKeyActivity;
 import com.sjq.githubapp.activities.SortActivity;
+import com.sjq.githubapp.activities.SortTrendingKeyActivity;
 import com.sjq.githubapp.activities.UserMainActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.presenters.MinePresenter;
 import com.sjq.githubapp.views.MineView;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -134,13 +135,13 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
                 CustomActivity.startCustomActivity(getActivity(),CustomActivity.LANGUAGE_FLAG);
                 break;
             case R.id.sort_key_layout:
-
+                SortTrendingKeyActivity.startCustomActivity(getActivity(),SortTrendingKeyActivity.LANGUAGE_FLAG);
                 break;
             case R.id.sort_language_layout:
                 SortActivity.startCustomActivity(getActivity(),SortActivity.LANGUAGE_FLAG);
-
                 break;
             case R.id.key_layout:
+                CustomTrendingKeyActivity.startCustomActivity(getActivity(),CustomTrendingKeyActivity.LANGUAGE_FLAG);
                 break;
         }
     }

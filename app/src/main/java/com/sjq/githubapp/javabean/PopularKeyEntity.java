@@ -1,15 +1,14 @@
 package com.sjq.githubapp.javabean;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Property;
 
 import java.io.Serializable;
-import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class PopularKeyEntity implements Serializable {
-    private static final long serialVersionUID = 5368710012122L;
+    private static final long serialVersionUID = 536871232110012122L;
 
     /**
      * path : crystal
@@ -18,14 +17,21 @@ public class PopularKeyEntity implements Serializable {
      */
     @Id(autoincrement = true)//设置自增长
     private Long autoId;
-
+    private int id;
     private String path;
     private String name;
     private boolean checked;
-    @Generated(hash = 1287181527)
-    public PopularKeyEntity(Long autoId, String path, String name,
+    
+    
+    
+    
+    
+    
+    @Generated(hash = 1920840049)
+    public PopularKeyEntity(Long autoId, int id, String path, String name,
             boolean checked) {
         this.autoId = autoId;
+        this.id = id;
         this.path = path;
         this.name = name;
         this.checked = checked;
@@ -56,6 +62,12 @@ public class PopularKeyEntity implements Serializable {
     }
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
 

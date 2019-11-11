@@ -2,16 +2,19 @@ package com.sjq.githubapp.models;
 
 import com.sjq.githubapp.base.BaseModel;
 import com.sjq.githubapp.javabean.PopularKeyEntity;
+import com.sjq.githubapp.javabean.UserContactPopularKeyEntity;
 
 import java.util.ArrayList;
 
 public interface PopularModel  extends BaseModel {
 
-    ArrayList<PopularKeyEntity> getLanguage();
+    ArrayList<PopularKeyEntity> getLanguage(String userName);
     ArrayList<PopularKeyEntity>  getAllLanguage();
 
-    void saveAllLanguage(ArrayList<PopularKeyEntity> list);
+    ArrayList<UserContactPopularKeyEntity> getUserLanguage(String userName);
 
-    void saveSortFinishLanguage(ArrayList<PopularKeyEntity> list);
+    void saveAllLanguage(ArrayList<UserContactPopularKeyEntity> list,String userName);
+
+    void saveSortFinishLanguage(ArrayList<PopularKeyEntity> list,String userName);
 
 }

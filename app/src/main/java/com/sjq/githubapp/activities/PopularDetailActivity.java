@@ -20,7 +20,6 @@ import com.sjq.githubapp.javabean.TrendingItemEntity;
 import com.sjq.githubapp.javabean.TrendingStateEntity;
 import com.sjq.githubapp.presenters.PopularDetailPresenter;
 import com.sjq.githubapp.views.PopularDetailView;
-import com.xiasuhuei321.loadingdialog.view.LoadingDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -198,6 +197,11 @@ public class PopularDetailActivity extends BaseMvpActivity<PopularDetailView,Pop
         }else{
             favorite_img.setBackgroundResource(R.drawable.favorite_white);
         }
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
 }

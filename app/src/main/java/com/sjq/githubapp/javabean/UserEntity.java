@@ -1,8 +1,8 @@
 package com.sjq.githubapp.javabean;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 @Entity
 public class UserEntity {
@@ -11,6 +11,9 @@ public class UserEntity {
 
     private String user_name;
     private String token;
+
+
+
     @Generated(hash = 691913765)
     public UserEntity(Long autoId, String user_name, String token) {
         this.autoId = autoId;

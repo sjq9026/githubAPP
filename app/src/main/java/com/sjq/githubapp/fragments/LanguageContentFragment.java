@@ -2,14 +2,6 @@ package com.sjq.githubapp.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +24,13 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -126,7 +125,6 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
         refresh_layout = view.findViewById(R.id.refresh_layout);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(RecyclerView.VERTICAL);
-        Log.i("AAAAAA","onCreateView()===>"+getArguments().getString(ARG_PARAM1));
         recyclerView.setLayoutManager(manager);
         EventBus.getDefault().register(this);
         //设置分隔线
@@ -134,7 +132,6 @@ public class LanguageContentFragment extends BaseFragment<LanguageContentView, L
         recyclerView.setItemAnimator( new DefaultItemAnimator());
 
 
-        Log.i("AAAAAA","onCreate()===>");
         if (getArguments() != null) {
             if(getArguments().get(TYPE).equals(LanguageContentFragment.NET_WORK)){
                 refresh_layout.autoRefresh();

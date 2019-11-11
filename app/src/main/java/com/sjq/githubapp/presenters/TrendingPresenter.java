@@ -14,8 +14,10 @@ import com.sjq.githubapp.adapters.MyFragmentPagerAdapter;
 import com.sjq.githubapp.base.BasePresenter;
 import com.sjq.githubapp.fragments.TrendingContentFragment;
 import com.sjq.githubapp.javabean.TrendingKeyEntity;
+import com.sjq.githubapp.javabean.UserContactTrendingKeyEntity;
 import com.sjq.githubapp.models.TrendingModel;
 import com.sjq.githubapp.models.TrendingModelImpl;
+import com.sjq.githubapp.util.UtilsSharePre;
 import com.sjq.githubapp.views.TrendingView;
 
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -47,8 +49,10 @@ public class TrendingPresenter implements BasePresenter {
         model = new TrendingModelImpl();
     }
 
-    public void initlangrage() {
-        ArrayList<TrendingKeyEntity> mLanguages = model.getLanguage();
+    public void initLanguage() {
+        String userName = UtilsSharePre.getInstance().getPreferenceString(mView.getContext(), UtilsSharePre.USER_NAME, "");
+        ArrayList<TrendingKeyEntity> mLanguages = model.getLanguage(userName);
+
         //如果数据库中没有数据，那么从本地文件中解析
         if (mLanguages == null || mLanguages.size() == 0) {
             InputStreamReader inputStreamReader;
@@ -71,7 +75,13 @@ public class TrendingPresenter implements BasePresenter {
                 for (JsonElement obj : jsonArray) {
                     TrendingKeyEntity language = gson.fromJson(obj, TrendingKeyEntity.class);
                     mLanguages.add(language);
+                    UserContactTrendingKeyEntity contactPopularKeyEntity = new UserContactTrendingKeyEntity();
+                    contactPopularKeyEntity.setTrending_key_id(language.getId());
+                    contactPopularKeyEntity.setUser_name(userName);
                     MyApplication.getmDaoSession().getTrendingKeyEntityDao().insertOrReplace(language);
+                    if (language.getChecked()) {
+                        MyApplication.getmDaoSession().getUserContactTrendingKeyEntityDao().insertOrReplace(contactPopularKeyEntity);
+                    }
                 }
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -87,7 +97,7 @@ public class TrendingPresenter implements BasePresenter {
     public MyFragmentPagerAdapter getFragmentPagerAdapter(ArrayList<TrendingKeyEntity> languageEntities, FragmentManager manager) {
         ArrayList<Fragment> fragments = new ArrayList<>();
         for (int i = 0; i < languageEntities.size(); i++) {
-            fragments.add(TrendingContentFragment.newInstance(languageEntities.get(i).getName(),TrendingContentFragment.NET_WORK));
+            fragments.add(TrendingContentFragment.newInstance(languageEntities.get(i).getName(), TrendingContentFragment.NET_WORK));
         }
         MyFragmentPagerAdapter myFragmentPagerAdapter = new MyFragmentPagerAdapter(manager, fragments);
         return myFragmentPagerAdapter;
@@ -104,6 +114,7 @@ public class TrendingPresenter implements BasePresenter {
             public int getCount() {
                 return mTitleDataList == null ? 0 : mTitleDataList.size();
             }
+
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView colorTransitionPagerTitleView = new SimplePagerTitleView(context);

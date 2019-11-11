@@ -10,7 +10,6 @@ import com.sjq.githubapp.util.UtilsSharePre;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
 public class WelcomeActivity extends AppCompatActivity {
 
     @Override
@@ -37,4 +36,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         }, 1500);
     }
+
+
+
 }

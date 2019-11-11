@@ -118,7 +118,7 @@ public class TrendingFragment extends BaseFragment<PopularView, TrendingPresente
         // Inflate the layout for this fragment
         contentView = inflater.inflate(R.layout.fragment_trending, container, false);
         initView();
-        mPresenter.initlangrage();
+        mPresenter.initLanguage();
         return contentView;
     }
 
