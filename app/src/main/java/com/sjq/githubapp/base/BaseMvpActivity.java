@@ -9,7 +9,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
-import com.sjq.githubapp.R;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
