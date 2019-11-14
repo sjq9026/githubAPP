@@ -4,7 +4,10 @@ package com.sjq.githubapp.network;
 import com.sjq.githubapp.javabean.PopularResponse;
 import com.sjq.githubapp.javabean.TrendingResponse;
 import com.sjq.githubapp.javabean.UserInfoResponse;
+import com.sjq.githubapp.javabean.UserRepo;
 import com.sjq.githubapp.javabean.WanAndroidResponse;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -29,6 +32,11 @@ public interface Request {
     @Headers("BaseUrlName:github")
     @GET("users/{users}")
     Observable<UserInfoResponse> getUserInfo(@Path("users") String users);
+
+    @Headers("BaseUrlName:github")
+    @GET("users/{users}/repos")
+    Observable<ArrayList<UserRepo>> getUserRepos(@Path("users") String users);
+
 
     @GET("{banner}/{json}")
     Observable<WanAndroidResponse> testWandroid(@Path("banner") String banner, @Path("json") String json);

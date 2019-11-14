@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jaeger.library.StatusBarUtil;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.adapters.UserMainAdapter;
+import com.sjq.githubapp.javabean.UserRepo;
 import com.sjq.githubapp.presenters.UserInfoPresenter;
 import com.sjq.githubapp.views.UserInfoView;
 
@@ -23,8 +25,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class UserMainActivity extends AppCompatActivity implements UserInfoView {
     private RecyclerView recyclerView;
     private TextView user_name_tv;
-    private ImageView icon_img;
+    private RoundedImageView icon_img;
     private UserInfoPresenter mPresenter;
+    private UserMainAdapter mUserMainAdapter;
 
     public static void startCustomActivity(Activity context) {
         Intent intent = new Intent(context, UserMainActivity.class);
@@ -34,17 +37,17 @@ public class UserMainActivity extends AppCompatActivity implements UserInfoView 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_user_main);
         StatusBarUtil.setColorNoTranslucent(this, Color.parseColor("#ADFBFB"));
         initView();
         mPresenter = new UserInfoPresenter(this);
         mPresenter.getUserName();
         mPresenter.getUserInfo();
+        mPresenter.getUserRepos();
     }
 
     private void initView() {
-        ArrayList<String> strings = new ArrayList<>();
+
 
         user_name_tv = findViewById(R.id.user_name);
         icon_img = findViewById(R.id.icon_img);
@@ -52,13 +55,26 @@ public class UserMainActivity extends AppCompatActivity implements UserInfoView 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(recyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(new UserMainAdapter(strings));
+
     }
 
     @Override
     public void initUserName(String userName) {
-
+        user_name_tv.setText(userName);
     }
+
+    @Override
+    public void initUserIcon(String userIcon) {
+        Glide.with(this)
+                .load(userIcon)
+                .into(icon_img);
+    }
+
+    @Override
+    public void initAdapter(ArrayList<UserRepo> list) {
+        recyclerView.setAdapter(new UserMainAdapter(list));
+    }
+
 
     @Override
     public Context getContext() {

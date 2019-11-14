@@ -13,7 +13,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/wrap"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="80dp"
 
         android:clickable="true"
         android:focusable="true"
@@ -31,12 +31,32 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp">
 
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/icon_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/repo"
+                app:riv_border_color="#333333"
+                app:riv_border_width="0dp"
+                app:riv_corner_radius="20dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="repeat"/>
+
             <TextView
-                android:id="@+id/user_name"
-                android:text="测试数据"
-                android:textColor="@color/black"
+                android:id="@+id/full_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/icon_img"
+                android:textColor="@color/color_theme"
+                android:textSize="18sp"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
