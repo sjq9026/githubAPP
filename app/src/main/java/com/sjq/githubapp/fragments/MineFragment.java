@@ -1,6 +1,8 @@
 package com.sjq.githubapp.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +13,14 @@ import android.widget.RelativeLayout;
 import com.sjq.githubapp.R;
 import com.sjq.githubapp.activities.CustomActivity;
 import com.sjq.githubapp.activities.CustomTrendingKeyActivity;
+import com.sjq.githubapp.activities.LoginActivity;
 import com.sjq.githubapp.activities.SortActivity;
 import com.sjq.githubapp.activities.SortTrendingKeyActivity;
 import com.sjq.githubapp.activities.UserMainActivity;
 import com.sjq.githubapp.base.BaseFragment;
 import com.sjq.githubapp.presenters.MinePresenter;
+import com.sjq.githubapp.util.UtilsDialog;
+import com.sjq.githubapp.util.UtilsSharePre;
 import com.sjq.githubapp.views.MineView;
 
 import androidx.fragment.app.Fragment;
@@ -45,6 +50,7 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
     private RelativeLayout key_layout;
     private RelativeLayout sort_key_layout;
     private RelativeLayout sort_language_layout;
+    private RelativeLayout quit_layout;
 
 
     public MineFragment() {
@@ -56,7 +62,6 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-
      * @return A new instance of fragment MineFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -87,10 +92,12 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
         key_layout = view.findViewById(R.id.key_layout);
         sort_key_layout = view.findViewById(R.id.sort_key_layout);
         sort_language_layout = view.findViewById(R.id.sort_language_layout);
+        quit_layout = view.findViewById(R.id.quit_layout);
         home_layout.setOnClickListener(this);
         custom_language_layout.setOnClickListener(this);
         key_layout.setOnClickListener(this);
         sort_key_layout.setOnClickListener(this);
+        quit_layout.setOnClickListener(this);
         sort_language_layout.setOnClickListener(this);
         return view;
     }
@@ -98,6 +105,27 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
     @Override
     protected MinePresenter initPresenter() {
         return new MinePresenter();
+    }
+
+    public void doBack() {
+        UtilsDialog.getInstance().showAlertDailog(getActivity(), "提示", "确定退出登录吗？", "确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        UtilsSharePre.getInstance().setPreferenceString(getActivity(), UtilsSharePre.USER_NAME, "");
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+                        getActivity().startActivity(intent);
+                        getActivity().finish();
+                    }
+                }, "取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -127,21 +155,25 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.home_layout:
                 UserMainActivity.startCustomActivity(getActivity());
                 break;
             case R.id.custom_language_layout:
-                CustomActivity.startCustomActivity(getActivity(),CustomActivity.LANGUAGE_FLAG);
+                CustomActivity.startCustomActivity(getActivity(), CustomActivity.LANGUAGE_FLAG);
                 break;
             case R.id.sort_key_layout:
-                SortTrendingKeyActivity.startCustomActivity(getActivity(),SortTrendingKeyActivity.LANGUAGE_FLAG);
+                SortTrendingKeyActivity.startCustomActivity(getActivity(), SortTrendingKeyActivity.LANGUAGE_FLAG);
                 break;
             case R.id.sort_language_layout:
-                SortActivity.startCustomActivity(getActivity(),SortActivity.LANGUAGE_FLAG);
+                SortActivity.startCustomActivity(getActivity(), SortActivity.LANGUAGE_FLAG);
                 break;
             case R.id.key_layout:
-                CustomTrendingKeyActivity.startCustomActivity(getActivity(),CustomTrendingKeyActivity.LANGUAGE_FLAG);
+                CustomTrendingKeyActivity.startCustomActivity(getActivity(), CustomTrendingKeyActivity.LANGUAGE_FLAG);
+
+                break;
+            case R.id.quit_layout:
+                doBack();
                 break;
         }
     }

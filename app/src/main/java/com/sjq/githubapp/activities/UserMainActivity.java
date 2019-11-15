@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.jaeger.library.StatusBarUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.sjq.githubapp.R;
@@ -71,7 +75,27 @@ public class UserMainActivity extends AppCompatActivity implements UserInfoView 
     }
 
     @Override
-    public void initAdapter(ArrayList<UserRepo> list) {
+    public void initAdapter(final ArrayList<UserRepo> list) {
+        Log.i("TAG", list.toString() + "");
+        mUserMainAdapter = new UserMainAdapter(list);
+        mUserMainAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+
+
+
+        recyclerView.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
+                UserRepoDetailActivity.startToUseRepoDetailActivity(UserMainActivity.this, list.get(position).getHtml_url());
+            }
+        });
+//        mUserMainAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//
+//            }
+//        });
+
+
         recyclerView.setAdapter(new UserMainAdapter(list));
     }
 
